@@ -4,5 +4,6 @@ bower_components/
 .idea/
 .tmp/
 dist/
-
+.idea
+HTML
 typings/
