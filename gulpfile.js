@@ -13,7 +13,7 @@ var notify = require("gulp-notify");
 var bower = require('gulp-bower');
 
 var config = {
-  sassPath: './resources/sass',
+  sassPath: ['./src/assets/sass', './src/app/components'],
   bowerDir: './bower_components'
 }
 
@@ -28,9 +28,23 @@ wrench.readdirSyncRecursive('./gulp').filter(function(file) {
   require('./gulp/' + file);
 });
 
-gulp.task('bower', function() {
-  return bower()
-    .pipe(gulp.dest(config.bowerDir))
+/**BOWER INJECTION **/
+
+
+/** SASS TO CSS **/
+gulp.task('css', function() {
+  return gulp.src( './src/assets/sass/*.scss')
+    .pipe(sass({
+      style: 'compressed',
+      loadPath: [
+        './src/assets/sass',
+        config.bowerDir + '/foundation/scss'
+      ]
+    })
+      .on("error", notify.onError(function (error) {
+        return "Error: " + error.message;
+      })))
+    .pipe(gulp.dest('./public/css'));
 });
 
 
@@ -38,6 +52,6 @@ gulp.task('bower', function() {
  *  Default task clean temporaries directories and launch the
  *  main optimization build task
  */
-gulp.task('default', ['clean', 'bower'], function () {
+gulp.task('default', ['clean','css', 'bower'], function () {
   gulp.start('build');
 });
