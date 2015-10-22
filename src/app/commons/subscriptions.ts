@@ -16,9 +16,6 @@ module app.dispatchers {
   }
 
 
-  angular.module('smz.dispatchers')
+  angular.module('smz.dispatchers', [])
     .service('dispatchers', Dispatchers)
-
-
-
 }

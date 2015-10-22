@@ -4,7 +4,5 @@
 
 /// <reference path="courseService.ts" />
 
-
-module app.common.services {
-  angular.module('smz.services', [])
-}
+angular.module('smz.services', [])
+  .service('courseService', app.common.services.CourseService);

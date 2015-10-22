@@ -45,6 +45,6 @@ module app.common.services {
       }
     }
 
-    angular.module('smz.services')
-      .service('courseService', CourseService)
 }
+
+

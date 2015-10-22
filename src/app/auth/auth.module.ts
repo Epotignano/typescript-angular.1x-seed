@@ -8,7 +8,7 @@
 module Auth {
   'use strict';
 
-  angular.module('auth', ['$firebase'])
-    .config(RouterConfig)
+  angular.module('auth')
+    .config(RouterConfig);
 }
 

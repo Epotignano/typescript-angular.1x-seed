@@ -23,8 +23,7 @@ module smileMotivationz {
    // dependencies
 
     'auth',
-    'smz.services',
-    'smz.ui.auth'
+
 
   ])
     .constant('malarkey', malarkey)
