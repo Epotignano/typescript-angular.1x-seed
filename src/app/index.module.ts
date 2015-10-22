@@ -23,6 +23,7 @@ module smileMotivationz {
    // dependencies
 
     'auth',
+    'smz.services',
     'smz.ui.auth'
 
   ])
@@ -32,6 +33,6 @@ module smileMotivationz {
     .config(Config)
     .config(RouterConfig)
     .run(RunBlock)
-    .controller('MainController', MainController)
+    .controller('MainController', MainController);
 
 }

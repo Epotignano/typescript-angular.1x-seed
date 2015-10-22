@@ -3,7 +3,7 @@
  */
 
   /// <reference path="../../../.tmp/typings/tsd.d.ts" />
-  /// <reference path="../../../src/smz.typings/entities/user.ts" />
+  /// <reference path="../../../src/domain/user.ts" />
 
 module smzUiAuth {
   'use strict';

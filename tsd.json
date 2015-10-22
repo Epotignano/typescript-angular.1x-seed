@@ -3,5 +3,13 @@
   "repo": "borisyankov/DefinitelyTyped",
   "ref": "1.4.1",
   "path": ".tmp/typings",
-  "bundle": ".tmp/typings/tsd.d.ts"
+  "bundle": ".tmp/typings/tsd.d.ts",
+  "installed": {
+    "rx/rx.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    }
+  }
 }
