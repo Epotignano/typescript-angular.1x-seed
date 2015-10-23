@@ -9,34 +9,17 @@ module smzUiAuth {
   'use strict';
 
   /** @ngInject */
-  export function smzLogin(): ng.IDirective {
+  export function smzLogin():ng.IDirective {
 
-    return {
+    var directive = <ng.IDirective> {
       restrict: 'E',
       scope: {},
-      templateUrl: 'src/components/auth/auth.login.html',
-      controller: LoginCtrl,
+      templateUrl: 'app/components/auth/auth.login.html',
+      controller: 'LoginController',
       controllerAs: 'vm',
       bindToController: true
     };
-  }
 
-  interface ILogin {
-    simpleLogin: any;
-  }
-
-  /** @ngInject */
-  class LoginCtrl implements ILogin {
-
-    public user : User;
-    public AuthService : AngularFireAuth;
-
-    simpleLogin () {
-      this.AuthService.$authWithPassword({email: this.user.email, password: this.user.password})
-      .then(function(result){
-          console.log(result);
-        })
-      ;
-    }
+    return directive;
   }
 }

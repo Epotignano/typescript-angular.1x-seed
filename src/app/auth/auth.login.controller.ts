@@ -27,13 +27,9 @@ module Auth {
     }
 
     sendCredentials () {
-      console.log('Credentials sent ');
+      console.log('Credentials sent');
     }
-
   }
-
-
-
 }
 
 angular.module('auth', [])

@@ -3,7 +3,7 @@
  */
 
 /// <reference path="../../../.tmp/typings/tsd.d.ts" />
-/// <reference path="../../../src/domain/domain.d.ts" />
+
 
 module app.common {
 

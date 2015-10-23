@@ -4,5 +4,10 @@
 
 /// <reference path="courseService.ts" />
 
-angular.module('smz.services', [])
-  .service('courseService', app.common.services.CourseService);
+module app.services {
+
+  angular.module('smz.services', ['firebase'])
+    .service('courseService', CourseService)
+    .service('authService', AuthService);
+
+}

@@ -7,7 +7,5 @@
 module smzUiAuth {
 
   angular.module('smz.ui.auth', [])
-    .directive('smzLogin', function(){
-      return true
-    })
+    .directive('smzLogin', smzLogin)
 }

@@ -2,17 +2,11 @@
  * Created by mmasuyama on 10/22/2015.
  */
 
-/// <reference path="../../../../.tmp/typings/tsd.d.ts" />
-/// <reference path="../../../../src/domain/domain.d.ts" />
-/// <reference path="../dataBase.ts" />
-
-
-
-module app.common.services {
+module app.services {
 
     interface ICourseDataResource{
       getCourse(courseId : string) : void;
-      createCourse(courseData : app.domain.Course) : void;
+      createCourse(courseData : any) : void;
       getSubject(): void;
     }
 
@@ -20,8 +14,11 @@ module app.common.services {
 
       static $inject = ['rx', 'firebase'];
 
-      constructor(private subject : Rx.Subject<app.domain.Course>, private db: any) {
-        this.db = new  app.common.Database("https://smile-motivationz.firebaseio.com/");
+      private db : any = new  app.common.Database('https://smile-motivationz.firebaseio.com/');
+      private subject = Rx.Subject;
+
+      constructor() {
+
       }
 
       getSubject() {
@@ -29,13 +26,13 @@ module app.common.services {
       }
 
       getCourse(courseId: string) {
-        return this.db.child(courseId).on('value', function(snapshot){
+        return this.db.child(courseId).on('value', function(snapshot : any){
           this.subject.onNext({event: 'read', data: snapshot.val()});
         })
       }
 
-      createCourse(courseData : app.domain.Course) {
-        this.db.set(courseData, function(error){
+      createCourse(courseData : any) {
+        this.db.set(courseData, function(error: any){
             if(error) {
               this.subject.onError({event: 'creation'});
               return;
@@ -46,5 +43,3 @@ module app.common.services {
     }
 
 }
-
-
