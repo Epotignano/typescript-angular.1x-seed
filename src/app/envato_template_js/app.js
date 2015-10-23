@@ -1,6 +1,21 @@
 //responsive menu slicknav
 
 
+// $(function() {
+//     "use strict";
+//     $('.counter-up').counterUp({
+//         delay: 10,
+//         time: 3000
+//     });
+//     $('.counter-up-fast').counterUp({
+//         delay: 5,
+//         time: 1000
+//     });
+//     //circular progress animation
+//     $('.circlestat').circliful();
+// });
+
+
 $(function() {
     "use strict";
     $('.slicknav').slicknav({
@@ -17,7 +32,7 @@ $(function() {
         closedSign: '<b class="fa fa-circle"></b>',
         openedSign: '<b class="fa fa-circle"></b>'
     });
-
+    
      $(".slim-scroll").slimscroll({
         height: "180px",
         alwaysVisible: false,
@@ -36,7 +51,7 @@ $(function() {
 
 });
 
-/*
+/*     
  * Add collapse and remove events to boxes
  */
 
@@ -44,7 +59,7 @@ $(function() {
     "use strict";
 
     $("[data-widget='collapse']").click(function() {
-        //Find the box parent
+        //Find the box parent        
         var box = $(this).parents(".box").first();
         //Find the body and the footer
         var bf = box.find(".box-body, .box-footer");
