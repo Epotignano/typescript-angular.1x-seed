@@ -20,10 +20,14 @@ module smileMotivationz {
     'ngTouch',
     'ngSanitize',
     'ui.router',
-   // dependencies
 
-    'auth',
-    'smz.services'
+    // commons
+    'smz.services',
+
+    // modules
+    'auth'
+
+    // ui components
 
   ])
     .constant('malarkey', malarkey)

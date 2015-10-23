@@ -11,7 +11,13 @@ module Auth {
 
   export class AuthService  implements  IAuthService {
 
+    static $inject = ['dbFactory'];
+
+    constructor(private dbFactory : app.services.DBFactory ) {}
+
    sendCredentials(credentials: FirebaseCredentials) {
+
+     console.log(this.dbFactory);
       console.log('Service is something here');
     }
   }
