@@ -13,10 +13,8 @@ module Auth {
       $stateProvider
         .state('login', {
           url: '/login',
-          templateUrl: 'app/auth/auth.login.html',
-          controller: 'LoginController',
-          controllerAs: 'login'
-        });
+          templateUrl: 'app/auth/auth.login.html'
+          });
 
     }
 

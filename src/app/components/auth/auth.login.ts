@@ -13,7 +13,7 @@ module smzUiAuth {
       scope: {},
       templateUrl: 'app/components/auth/auth.login.html',
       controller: 'LoginController',
-      controllerAs: 'vm',
+      controllerAs: 'login',
       bindToController: true
     };
 

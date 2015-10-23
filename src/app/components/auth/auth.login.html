@@ -14,14 +14,23 @@
         <div class="large-12 columns">
           <div class="row">
             <div class="edumix-signup-panel">
-              <p class="welcome"> Welcome to this awesome app!</p>
+              <!--Errors -->
+              <div class="row" ng-show="login.err.message">
+                <div class="box bg-red">
+                  <!-- /.box-header -->
+                  <div class="box-body " style="display: block;">
+                    <p class="text-white"> {{ login.err.message }}</p>
+                  </div>
+                </div>
+              </div>
+
               <form ng-submit="login.signIn()">
                 <div class="row collapse">
                   <div class="small-2  columns">
                     <span class="prefix bg-green"><i class="text-white icon-user"></i></span>
                   </div>
                   <div class="small-10  columns">
-                    <input type="text" placeholder="Username">
+                    <input type="text" ng-model="login.email" placeholder="Username">
                   </div>
                 </div>
                 <div class="row collapse">
@@ -29,7 +38,7 @@
                     <span class="prefix bg-green"><i class="text-white icon-lock"></i></span>
                   </div>
                   <div class="small-10 columns ">
-                    <input type="text" placeholder="Password">
+                    <input type="text" ng-model="login.password" placeholder="Password">
                   </div>
                 </div>
               </form>
@@ -37,7 +46,7 @@
 
               <p>Already have an account? <a href="#">Forgot password ?</a>
               </p>
-              <a href="index.html" class="bg-green"><span>Sign in</span> </a>
+              <button ng-click="login.signIn()" class="bg-green"><span>Sign in</span> </button>
               <br>
               <h2><span>Connect with</span></h2>
             </div>

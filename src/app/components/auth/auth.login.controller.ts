@@ -2,9 +2,9 @@
  * Created by mmasuyama on 10/22/2015.
  */
 
-/// <reference path="../../../.tmp/typings/tsd.d.ts" />
 
-module Auth {
+
+module SmzAuth {
 
   'use strict';
 
@@ -13,27 +13,25 @@ module Auth {
     email: string;
     password: string;
     err: any;
-    sendCredentials() : void;
-
+    signIn() : void;
   }
 
   export class LoginController implements ILogin {
     static $inject = ['authService'];
     email: string;
     password: string;
-    err: any;
 
-    constructor(private authService: app.services.AuthService) {
+    constructor(private authService: app.services.AuthService, public err: any) {
       this.email = 'Initial email';
       this.password =  '12345';
     }
 
-    sendCredentials () {
+    signIn () {
       this.authService.signIn({email: this.email, password: this.password})
         .then((err) => this.err = err)
     }
   }
 }
 
-angular.module('auth', [])
-  .controller('LoginController', Auth.LoginController);
+angular.module('smz.ui.auth', [])
+  .controller('LoginController', SmzAuth.LoginController);

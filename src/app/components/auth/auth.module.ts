@@ -6,6 +6,8 @@
 
 module smzUiAuth {
 
-  angular.module('smz.ui.auth', [])
+  'use strict'
+
+  angular.module('smz.ui.auth')
     .directive('smzLogin', smzLogin)
 }

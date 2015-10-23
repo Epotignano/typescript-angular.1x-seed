@@ -11,7 +11,7 @@ module app.services {
   interface IAuthService {
     authInstance: any;
     signIn(credentials : FirebaseCredentials);
-    signUp(userData : any);
+    signUp(userData : app.domain.User);
   }
 
   export class AuthService  implements  IAuthService {
@@ -21,9 +21,8 @@ module app.services {
       private dbFactory : Firebase ,
       private $firebaseAuth: AngularFireAuthService,
       private $cookieStore : ng.cookies.ICookieStoreService,
-      public authInstance : any)
-    {
-      this.authInstance = this.$firebaseAuth(this.dbFactory);
+      public authInstance : any){
+        this.authInstance = this.$firebaseAuth(this.dbFactory);
     }
 
     signIn(credentials: FirebaseCredentials) {
