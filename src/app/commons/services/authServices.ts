@@ -3,20 +3,17 @@
  */
 
 /// <reference path="../../../../.tmp/typings/tsd.d.ts" />
-module app.services {
+/*module app.services {
 
     interface IAuthService {
 
-      sendCredentials(credentials : FirebaseCredentials)
-
+      url : string;
+      sendCredentials(credentials : FirebaseCredentials);
     }
 
     export class AuthService  implements  IAuthService {
 
-      static $inject = ['firebase'];
-
-      constructor() {
-        console.log('Constructor');
+      constructor(public url: string) {
       }
 
       sendCredentials(credentials: FirebaseCredentials) {
@@ -26,3 +23,4 @@ module app.services {
     }
 
 }
+*/

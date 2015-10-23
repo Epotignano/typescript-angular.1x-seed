@@ -7,7 +7,7 @@
 module app.services {
 
   angular.module('smz.services', ['firebase'])
-    .service('courseService', CourseService)
-    .service('authService', AuthService);
+    .service('courseService', CourseService);
+   // .service('authService', AuthService);
 
 }

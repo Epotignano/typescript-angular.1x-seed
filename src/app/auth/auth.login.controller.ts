@@ -17,16 +17,18 @@ module Auth {
   }
 
   export class LoginController implements ILogin {
-
+    static $inject = ['authService'];
     email: string;
     password: string;
 
-    constructor() {
+    constructor(private authService : Auth.AuthService) {
       this.email = 'Initial email';
       this.password =  '12345';
     }
 
     sendCredentials () {
+      this.authService.sendCredentials({email: this.email, password: this.password});
+
       console.log('Credentials sent');
     }
   }
