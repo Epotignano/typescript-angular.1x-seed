@@ -9,29 +9,40 @@ module app.services {
 
   interface IAuthService {
     authInstance: any;
-    sendCredentials(credentials : FirebaseCredentials);
+    signIn(credentials : FirebaseCredentials);
+    signUp(userData : app.domain.User);
   }
 
   export class AuthService  implements  IAuthService {
-    static $inject = ['dbFactory', '$firebaseAuth'];
+    static $inject = ['dbFactory', '$firebaseAuth', '$cookieStore'];
 
-    constructor(private dbFactory : Firebase , private $firebaseAuth: AngularFireAuthService, public authInstance : any) {
+    constructor(
+      private dbFactory : Firebase ,
+      private $firebaseAuth: AngularFireAuthService,
+      private $cookieStore : ng.cookies.ICookieStoreService,
+      public authInstance : any)
+    {
       this.authInstance = this.$firebaseAuth(this.dbFactory);
     }
 
-    sendCredentials(credentials: FirebaseCredentials) {
+    signIn(credentials: FirebaseCredentials) {
       return this.authInstance.$authWithPassword(credentials)
-        .then(function(result){
+        .then(function(result: any){
           //TODO Delegate and login;
           return {result};
 
         })
-
-        .catch(function(err){
+      .catch(function(err : any){
           return err;
         })
     }
+
+    signUp () {
+
+    }
   }
+
+
 
   //TODO esto no deberia estar aca
 

@@ -28,12 +28,12 @@
     }
 
    export class Student extends User {
-      tests: void;
+      tests: any;
 
     }
 
     export class Teacher extends User {
-      assignedCourses : void;
+      assignedCourses : any;
       salary: number;
     }
 

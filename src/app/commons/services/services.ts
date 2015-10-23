@@ -5,6 +5,6 @@
 /// <reference path="courseService.ts" />
 
 module app.services {
-  angular.module('smz.services', ['firebase'])
+  angular.module('smz.services', ['firebase' , 'ngCookies'])
     .factory('dbFactory', app.services.factory);
 }

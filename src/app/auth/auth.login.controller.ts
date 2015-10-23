@@ -29,7 +29,7 @@ module Auth {
     }
 
     sendCredentials () {
-      this.authService.sendCredentials({email: this.email, password: this.password})
+      this.authService.signIn({email: this.email, password: this.password})
         .then((err) => this.err = err)
     }
   }

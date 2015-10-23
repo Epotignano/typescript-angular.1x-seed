@@ -25,9 +25,10 @@ module smileMotivationz {
     'smz.services',
 
     // modules
-    'auth'
+    'auth',
 
     // ui components
+    'smz.ui.auth'
 
   ])
     .constant('malarkey', malarkey)
