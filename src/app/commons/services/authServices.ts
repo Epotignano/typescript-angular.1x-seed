@@ -3,24 +3,39 @@
  */
 
 /// <reference path="../../../../.tmp/typings/tsd.d.ts" />
-/*module app.services {
 
-    interface IAuthService {
+module app.services {
+  'use strict';
 
-      url : string;
-      sendCredentials(credentials : FirebaseCredentials);
+  interface IAuthService {
+    authInstance: any;
+    sendCredentials(credentials : FirebaseCredentials);
+  }
+
+  export class AuthService  implements  IAuthService {
+    static $inject = ['dbFactory', '$firebaseAuth'];
+
+    constructor(private dbFactory : Firebase , private $firebaseAuth: AngularFireAuthService, public authInstance : any) {
+      this.authInstance = this.$firebaseAuth(this.dbFactory);
     }
 
-    export class AuthService  implements  IAuthService {
+    sendCredentials(credentials: FirebaseCredentials) {
+      return this.authInstance.$authWithPassword(credentials)
+        .then(function(result){
+          //TODO Delegate and login;
+          return {result};
 
-      constructor(public url: string) {
-      }
+        })
 
-      sendCredentials(credentials: FirebaseCredentials) {
-        console.log('Service is something here');
-
-      }
+        .catch(function(err){
+          return err;
+        })
     }
+  }
+
+  //TODO esto no deberia estar aca
+
+  angular.module('smz.services')
+    .service('authService', AuthService)
 
 }
-*/

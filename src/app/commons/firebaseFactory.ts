@@ -12,6 +12,4 @@ module app.services {
     return new Firebase('https://smile-motivationz.firebaseio.com/');
   }
 
-  angular.module('smz.services', [])
-    .factory('dbFactory', factory);
 }

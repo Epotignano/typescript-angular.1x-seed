@@ -1,7 +1,7 @@
 /**
  * Created by mmasuyama on 10/23/2015.
  */
-
+/*
 module Auth {
   'use strict';
 
@@ -26,3 +26,4 @@ module Auth {
 
 angular.module('auth')
   .service('authService', Auth.AuthService);
+*/

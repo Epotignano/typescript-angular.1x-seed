@@ -1,6 +1,6 @@
 <h1>Login</h1>
 
-<form ng-submit="login.sendCredentials()">
+<form name="loginForm" ng-submit="login.sendCredentials()">
   <input type="text" ng-model="login.email"/>
   <input type="text" ng-model="login.password"/>
 
@@ -8,4 +8,22 @@
     Submit
   </button>
 </form>
+
+<div class="box bg-red">
+  <div class="box-header bg-red">
+    <!-- tools box -->
+    <div class="pull-right box-tools">
+      <span class="box-btn" data-widget="remove"><i class="icon-cross"></i></span>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body " ng-show="login.err.message" style="display: block;">
+    <p class="text-white">{{login.err.message}}</p>
+  </div>
+</div>
+
+
+
+
+
 

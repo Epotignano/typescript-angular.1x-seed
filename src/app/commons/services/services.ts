@@ -4,10 +4,7 @@
 
 /// <reference path="courseService.ts" />
 
-/*module app.services {
-
+module app.services {
   angular.module('smz.services', ['firebase'])
-    .service('courseService', CourseService);
-   // .service('authService', AuthService);
-
-}*/
+    .factory('dbFactory', app.services.factory);
+}

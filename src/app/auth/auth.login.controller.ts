@@ -12,6 +12,7 @@ module Auth {
 
     email: string;
     password: string;
+    err: any;
     sendCredentials() : void;
 
   }
@@ -20,16 +21,16 @@ module Auth {
     static $inject = ['authService'];
     email: string;
     password: string;
+    err: any;
 
-    constructor(private authService : Auth.AuthService) {
+    constructor(private authService: app.services.AuthService) {
       this.email = 'Initial email';
       this.password =  '12345';
     }
 
     sendCredentials () {
-      this.authService.sendCredentials({email: this.email, password: this.password});
-
-      console.log('Credentials sent');
+      this.authService.sendCredentials({email: this.email, password: this.password})
+        .then((err) => this.err = err)
     }
   }
 }
