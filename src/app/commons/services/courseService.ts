@@ -1,7 +1,7 @@
 /**
  * Created by mmasuyama on 10/22/2015.
  */
-
+/*
 module app.services {
 
     interface ICourseDataResource{
@@ -13,8 +13,6 @@ module app.services {
     export class CourseService implements ICourseDataResource {
 
       static $inject = ['rx', 'firebase'];
-
-      private db : any = new  app.common.Database('https://smile-motivationz.firebaseio.com/');
       private subject = Rx.Subject;
 
       constructor() {
@@ -43,3 +41,4 @@ module app.services {
     }
 
 }
+*/
