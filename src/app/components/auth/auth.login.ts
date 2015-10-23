@@ -2,9 +2,6 @@
  * Created by mmasuyama on 10/21/2015.
  */
 
-  /// <reference path="../../../.tmp/typings/tsd.d.ts" />
-  /// <reference path="../../../src/domain/user.ts" />
-
 module smzUiAuth {
   'use strict';
 

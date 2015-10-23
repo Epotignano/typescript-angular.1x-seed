@@ -4,13 +4,14 @@
 
 /// <reference path="../../../../.tmp/typings/tsd.d.ts" />
 
+
 module app.services {
   'use strict';
 
   interface IAuthService {
     authInstance: any;
     signIn(credentials : FirebaseCredentials);
-    signUp(userData : app.domain.User);
+    signUp(userData : any);
   }
 
   export class AuthService  implements  IAuthService {
