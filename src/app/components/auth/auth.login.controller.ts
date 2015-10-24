@@ -21,10 +21,7 @@ module SmzAuth {
     email: string;
     password: string;
 
-    constructor(private authService: app.services.AuthService, public err: any) {
-      this.email = 'Initial email';
-      this.password =  '12345';
-    }
+    constructor(private authService: app.services.AuthService, public err: any) {}
 
     signIn () {
       this.authService.signIn({email: this.email, password: this.password})
