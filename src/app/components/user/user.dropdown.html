@@ -1,5 +1,8 @@
 <li class="has-dropdown bg-white">
-  <a class="bg-white" href="#"><img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/28.jpg" style="margin: 20px 0px 0px 20px;"><span class="admin-pic-text text-gray">Hi, {{userVm.user.email}} </span>
+  <a class="bg-white" href="#"><img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/28.jpg" style="margin: 20px 0px 0px 20px;"><span class="admin-pic-text text-gray">
+    <span ng-show="!userVm.user">Datos no disponibles</span>
+    <span ng-show="userVm.user">Hi, {{userVm.user.email}}</span>
+  </span>
   </a>
 
   <ul class="dropdown dropdown-nest profile-dropdown"><li class="title back js-generated"><h5><a href="javascript:void(0)">Back</a></h5></li><li class="parent-link show-for-small"><a class="parent-link js-generated" href="#"><img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/28.jpg" style="margin: 20px 0px 0px 20px;"><span class="admin-pic-text text-gray">Hi, Dave Mattew </span>
