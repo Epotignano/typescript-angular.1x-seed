@@ -5,7 +5,7 @@
   module app.domain {
 
     export interface IUser {
-      id : string;
+      $id : string;
       username: string;
       email: string;
       firstName: string;

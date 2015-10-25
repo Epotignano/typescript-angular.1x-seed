@@ -6,9 +6,9 @@ module app.services {
 
   interface ITeachersService {
     // getCollection():any;
-    get(teacherId : string) : void;
-    save(teacherData:app.domain.Teacher):void;
-    remove(teacherObj : AngularFireObject) : void;
+    get(teacherId : string) : any;
+    save(teacherData:any):any;
+    remove(teacherObj : any) : any;
 
   }
 
@@ -18,10 +18,10 @@ module app.services {
 
     constructor(
                 private collectionKey: string,
-                private teacherCRUD : any,
+                private teacherCRUD : app.services.FirebaseCRUD,
                 private authTokenService : app.services.AuthTokenService,
                 private threadsService : app.threads.Threads,
-                private thread: Rx.Subject<app.domain.Teacher>) {
+                private thread: Rx.Subject<{}>) {
 
       this.thread = new Rx.Subject<app.domain.Teacher>();
       this.collectionKey = 'teachers';
@@ -37,8 +37,8 @@ module app.services {
 
     get(teacherId) {
       this.teacherCRUD.get(teacherId)
-        .then((result)=> this.thread.onNext({result, type:'read'}))
-        .catch((error)=> this.thread.onError({error, type:'read'}))
+        .then((result: any)=> this.thread.onNext({result, type:'read'}))
+        .catch((error: any)=> this.thread.onError({error, type:'read'}))
     }
 
     save(teacherObj) {

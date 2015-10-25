@@ -30,7 +30,7 @@ module smileMotivationz {
 
     // ui components
     'smz.components.auth',
-    'smz.components.teachers',
+    // 'smz.components.teachers',
     'smz.components.user'
 
   ])

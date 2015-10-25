@@ -8,6 +8,4 @@ module app.components.user {
   'use strict';
 
   angular.module('smz.components.user', [])
-    .directive('smzUserDropDown', UserDropdown)
-
 }
