@@ -4,10 +4,10 @@
 /// <reference path="../../../../.tmp/typings/tsd.d.ts" />
 
 
-module smzUiAuth {
+module app.components.auth {
 
   'use strict'
 
-  angular.module('smz.ui.auth')
+  angular.module('smz.components.auth')
     .directive('smzLogin', smzLogin)
 }

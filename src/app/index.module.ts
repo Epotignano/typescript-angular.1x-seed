@@ -22,13 +22,16 @@ module smileMotivationz {
     'ui.router',
 
     // commons
+    'smz.threads',
     'smz.services',
 
     // modules
     'auth',
 
     // ui components
-    'smz.ui.auth'
+    'smz.components.auth',
+    'smz.components.teachers',
+    'smz.components.user'
 
   ])
     .constant('malarkey', malarkey)

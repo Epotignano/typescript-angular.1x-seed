@@ -34,9 +34,7 @@ ul.topnav li a, .bottom-list-menu li {
 ul.topnav li a:hover {
     background-color: #294583;
 }
-ul.topnav ul li a:hover {
-    color: .profile img
-}
+
 .top-bar .name h1 span {
     background: #3B5998;
     color: #fff;

@@ -30,5 +30,5 @@ module SmzAuth {
   }
 }
 
-angular.module('smz.ui.auth', [])
+angular.module('smz.components.auth', [])
   .controller('LoginController', SmzAuth.LoginController);

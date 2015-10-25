@@ -2,7 +2,7 @@
  * Created by mmasuyama on 10/21/2015.
  */
 
-module smzUiAuth {
+module app.components.auth {
   'use strict';
 
   /** @ngInject */
