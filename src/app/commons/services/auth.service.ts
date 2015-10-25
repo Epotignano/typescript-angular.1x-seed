@@ -70,7 +70,7 @@ module app.services {
     }
 
     getToken() {
-      this.$cookies.get(this.authKey);
+      return this.$cookies.get(this.authKey);
     }
 
     isAuthorized() {

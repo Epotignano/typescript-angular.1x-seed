@@ -18,14 +18,14 @@ module app.services {
 
     constructor(
                 private collectionKey: string,
-                private teacherCRUD : app.services.FirebaseCRUD,
+                private FirebaseCRUDFactory : app.services.FirebaseCRUD,
                 private authTokenService : app.services.AuthTokenService,
                 private threadsService : app.threads.Threads,
                 private thread: Rx.Subject<{}>) {
 
       this.thread = new Rx.Subject<app.domain.Teacher>();
       this.collectionKey = 'teachers';
-      this.teacherCRUD  = new app.services.FirebaseCRUD(this.collectionKey);
+      FirebaseCRUDFactory.setInstance(this.collectionKey);
       this.threadsService.setThread('Teacher', this.thread)
     }
 
@@ -36,19 +36,19 @@ module app.services {
     }*/
 
     get(teacherId) {
-      this.teacherCRUD.get(teacherId)
+      this.FirebaseCRUDFactory.get(teacherId)
         .then((result: any)=> this.thread.onNext({result, type:'read'}))
         .catch((error: any)=> this.thread.onError({error, type:'read'}))
     }
 
     save(teacherObj) {
-      this.teacherCRUD.save(teacherObj)
+      this.FirebaseCRUDFactory.save(teacherObj)
         .then((result)=> this.thread.onNext({result, type:'write'}))
         .catch((error)=> this.thread.onError({error, type:'write'}))
     }
 
     remove(teacherObj) {
-      this.teacherCRUD.remove(teacherObj)
+      this.FirebaseCRUDFactory.remove(teacherObj)
         .then((result)=> this.thread.onNext({result, type:'deletion'}))
         .catch((error)=> this.thread.onError({error, type:'deletion'}))
     }
