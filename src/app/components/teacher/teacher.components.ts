@@ -7,5 +7,6 @@ module app.components.teacher {
   'use strict';
 
   angular.module('smz.components.teacher', ['smz.components.teacher.editor'])
+
 }
 

@@ -13,15 +13,12 @@ module app.services {
   }
 
   export class TeachersService implements ITeachersService {
-
+    private collectionKey: string;
+    private thread: Rx.Subject<{}>
     /* @ngInject */
 
-    constructor(
-                private collectionKey: string,
-                private FirebaseCRUDFactory : app.services.FirebaseCRUD,
-                private authTokenService : app.services.AuthTokenService,
-                private threadsService : app.threads.Threads,
-                private thread: Rx.Subject<{}>) {
+    constructor(private FirebaseCRUDFactory : app.services.FirebaseCRUD,
+                private threadsService : app.threads.Threads) {
 
       this.thread = new Rx.Subject<app.domain.Teacher>();
       this.collectionKey = 'teachers';

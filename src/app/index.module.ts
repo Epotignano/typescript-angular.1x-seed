@@ -20,6 +20,8 @@ module smileMotivationz {
     'ngTouch',
     'ngSanitize',
     'ui.router',
+    'formly',
+    'formlyVanilla',
 
     // commons
     'smz.threads',
@@ -27,10 +29,11 @@ module smileMotivationz {
 
     // modules
     'auth',
+    'teacher',
 
     // ui components
     'smz.components.auth',
-    // 'smz.components.teachers',
+    'smz.components.teacher',
     'smz.components.user'
 
   ])

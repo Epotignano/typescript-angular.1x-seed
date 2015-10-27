@@ -1,0 +1,6 @@
+<form ng-submit="editorVm.save()" name="vm.form" novalidate>
+  <formly-form model="editorVm.model" fields="editorVm.fields" form="vm.form">
+    <button type="submit" class="btn btn-primary submit-button" ng-disabled="vm.form.$invalid">Submit</button>
+    <button type="button" class="btn btn-default" ng-click="vm.options.resetModel()">Reset</button>
+  </formly-form>
+</form>

@@ -5,9 +5,10 @@ module smileMotivationz {
 
     static $inject = ['$log', '$rootScope', 'authTokenService', '$state'];
 
-    constructor($log: ng.ILogService, $rootScope : ng.IRootScopeService, authTokenService : app.services.AuthTokenService, $state: ng.ui.IStateService) {
+    constructor($log: ng.ILogService, $rootScope : ng.IRootScopeService,
+                authTokenService : app.services.AuthTokenService,
+                $state: ng.ui.IStateService) {
       $log.debug('runBlock end');
-
 
       $rootScope.$on('$stateChangeStart',	function(event, toState){
 

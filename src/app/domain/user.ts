@@ -4,20 +4,7 @@
 
   module app.domain {
 
-    export interface IUser {
-      $id : string;
-      username: string;
-      email: string;
-      firstName: string;
-      lastName: string;
-      password: string;
-      age: number;
-      birthDate: string
-    }
-
-
     export class User {
-      id : string;
       username: string;
       email: string;
       firstName: string;
