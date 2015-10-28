@@ -619,10 +619,9 @@ span.error, small.error, .error small.error {
   background: #F20556; }
 [data-abide] span.error, [data-abide] small.error {
   background: #F20556; }
-
 input.input-top {
-  height: 2.4em; }
-
+  height: 2.4em;
+}
 input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"] {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
@@ -637,7 +636,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
   font-size: 0.875em;
   margin: 0 0 1rem 0;
   padding: 0.5em;
-  /* height: 2.3125em; */
+/*   height: 2.3125em; */
   width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
