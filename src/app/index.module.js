@@ -21,7 +21,11 @@
             'app.quick-panel',
 
             // Components
-            'app.components'
+            'app.components',
+
+
+            // Modules
+            'auth'
 
         ]);
 })();
