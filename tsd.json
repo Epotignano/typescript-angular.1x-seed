@@ -10,6 +10,12 @@
     },
     "rx/rx-lite.d.ts": {
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "firebase/firebase.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "angularfire/angularfire.d.ts": {
+      "commit": "fa20411dd52348e933c2b23b24365236e92fa4ac"
     }
   }
 }
