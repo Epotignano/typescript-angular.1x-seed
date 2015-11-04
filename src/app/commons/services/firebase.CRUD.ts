@@ -5,12 +5,12 @@
 
 module app.services {
   interface IFirebaseCRUD {
-      setInstance(collectionKey:string);
-      getCollection() : any;
-      get(objectId: string): ng.IPromise<AngularFireObject>;
-      save(objectToSave: AngularFireObject|any): ng.IPromise<Firebase>;
-      remove(objectToRemove: AngularFireObject) : ng.IPromise<Firebase>;
-    }
+    setInstance(collectionKey:string);
+    getCollection() : any;
+    get(objectId: string): ng.IPromise<AngularFireObject>;
+    save(objectToSave: AngularFireObject|any): ng.IPromise<Firebase>;
+    remove(objectToRemove: AngularFireObject) : ng.IPromise<Firebase>;
+  }
 
 
   export class FirebaseCRUD implements IFirebaseCRUD {
@@ -49,7 +49,7 @@ module app.services {
     $firebaseObject : AngularFireObjectService,
     $firebaseArray : AngularFireArrayService,
     dbFactory : Firebase) : FirebaseCRUD {
-        return new FirebaseCRUD($firebaseObject, $firebaseArray, dbFactory)
+    return new FirebaseCRUD($firebaseObject, $firebaseArray, dbFactory)
   }
 
   angular.module('smz.services')

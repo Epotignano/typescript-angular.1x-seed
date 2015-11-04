@@ -11,25 +11,26 @@ module smileMotivationz {
   'use strict';
 
   angular.module('smz', [
-    // Core
+    // core
     'app.core',
 
-    // Navigation
+    // navigation
     'app.navigation',
 
-    // Toolbar
+    // toolbar
     'app.toolbar',
 
-    // Quick panel
+    // quick panel
     'app.quick-panel',
 
-    // Components
+    // template components
     'app.components',
 
-
     // Modules
-    'auth'
+    'auth',
 
+    // smz components
+    'smz.components.auth'
   ])
     .config(Config)
     .config(RouterConfig)

@@ -15,7 +15,13 @@
       "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     },
     "angularfire/angularfire.d.ts": {
-      "commit": "fa20411dd52348e933c2b23b24365236e92fa4ac"
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "2d84e48e3b4ecb47b8c3f1a6c769e9293bce1196"
     }
   }
 }

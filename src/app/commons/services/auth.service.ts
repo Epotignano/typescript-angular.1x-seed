@@ -79,8 +79,6 @@ module app.services {
 
   }
 
-  //TODO esto no deberia estar aca
-
   angular.module('smz.services')
     .service('authService', AuthService)
     .service('authTokenService', AuthTokenService)
