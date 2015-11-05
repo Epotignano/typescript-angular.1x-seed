@@ -8,7 +8,7 @@ module smileMotivationz {
     constructor($log: ng.ILogService, $rootScope : ng.IRootScopeService,
                 authTokenService : app.services.AuthTokenService,
                 $state: ng.ui.IStateService) {
-      $log.debug('runBlock end');
+
 
       $rootScope.$on('$stateChangeStart', function ()
       {
@@ -30,6 +30,8 @@ module smileMotivationz {
           window.location.hash = '/login'
         }*/
       });
+
+      $log.debug('runBlock end');
     }
 
 

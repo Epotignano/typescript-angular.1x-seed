@@ -6,7 +6,7 @@
 module app.services {
   interface IFirebaseCRUD {
     setInstance(collectionKey:string);
-    getCollection() : any;
+    getCollection() : ng.IPromise<AngularFireArray>;
     get(objectId: string): ng.IPromise<AngularFireObject>;
     save(objectToSave: AngularFireObject|any): ng.IPromise<Firebase>;
     remove(objectToRemove: AngularFireObject) : ng.IPromise<Firebase>;
@@ -25,8 +25,8 @@ module app.services {
       this.BaseRef = this.dbFactory.child(collectionKey);
     }
 
-    getCollection() {
-      this.$firebaseArray(this.BaseRef).$loaded();
+    getCollection(): ng.IPromise<AngularFireArray> {
+      return this.$firebaseArray(this.BaseRef).$loaded()
     }
 
     get(objectId: string) : ng.IPromise<AngularFireObject> {
@@ -43,7 +43,7 @@ module app.services {
     }
   }
 
-  FirebaseCRUDFactory.$inject = ['$firebaseObject', '$firebaseArray', 'dbFactory']
+  FirebaseCRUDFactory.$inject = ['$firebaseObject', '$firebaseArray', 'dbFactory'];
 
   export function FirebaseCRUDFactory(
     $firebaseObject : AngularFireObjectService,

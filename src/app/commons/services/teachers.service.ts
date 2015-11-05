@@ -1,11 +1,12 @@
 /**
  * Created by mmasuyama on 10/24/2015.
  */
+/// <reference path="../../../../.tmp/typings/tsd.d.ts" />
 
 module app.services {
 
   interface ITeachersService {
-    // getCollection():any;
+    getCollection():void;
     get(teacherId : string) : any;
     save(teacherData:any):any;
     remove(teacherObj : any) : any;
@@ -14,23 +15,23 @@ module app.services {
 
   export class TeachersService implements ITeachersService {
     private collectionKey: string;
-    private thread: Rx.Subject<{}>
+    private thread: Rx.Subject<{}>;
     /* @ngInject */
 
     constructor(private FirebaseCRUDFactory : app.services.FirebaseCRUD,
                 private threadsService : app.threads.Threads) {
 
-      this.thread = new Rx.Subject<app.domain.Teacher>();
+      this.thread = new Rx.Subject<{}>();
       this.collectionKey = 'teachers';
       FirebaseCRUDFactory.setInstance(this.collectionKey);
       this.threadsService.setThread('Teacher', this.thread)
     }
 
-    /*getCollection() {
-     this.firebaseCRUD.getCollection()
-        .then((data) => this.thread.onNext(data))
-        .catch((error) => this.thread.onError())
-    }*/
+    getCollection() {
+     this.FirebaseCRUDFactory.getCollection()
+       .then((result)=> this.thread.onNext({result, type:'read'}))
+       .catch((error)=> this.thread.onError({error, type:'read'}))
+    }
 
     get(teacherId) {
       this.FirebaseCRUDFactory.get(teacherId)

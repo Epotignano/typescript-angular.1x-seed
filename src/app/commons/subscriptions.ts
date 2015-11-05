@@ -18,12 +18,14 @@ module app.threads {
     /*@ngInject */
     constructor(){}
 
-  setThread (threadKey: string, thread: any) {
-    // TODO change this for dynamically use class.
-    // this.threads[threadKey] = new Rx.Subject<threadClass>()
+    public defaultEvents = ['COLLECTION_LOAD',
+      'COLLECTION_OBJECT_REMOVED',
+      'OBJECT_LOAD', 'OBJECT_UPDATED',
+      'OBJECT_DELETE'];
 
-    this.threads[threadKey] = thread;
-  }
+    setThread (threadKey: string, thread: any) {
+      this.threads[threadKey] = thread;
+    }
 
     getThread (threadKey: string) {
       return this.threads[threadKey]

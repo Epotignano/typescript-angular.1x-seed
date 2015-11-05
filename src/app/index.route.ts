@@ -9,7 +9,7 @@ module smileMotivationz {
       $stateProvider
         .state('app', {
           abstract: true,
-          url: '/',
+          url: '/app',
           views   : {
             'main@'         : {
               templateUrl: 'app/core/layouts/default.html'

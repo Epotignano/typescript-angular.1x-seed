@@ -1,30 +1,40 @@
 /**
  * Created by mmasuyama on 10/24/2015.
  */
-module smileMotivationz.TeachersModule{
+module app.modules.teachers{
   'use strict'
-/*
+
   export class TeachersConfig {
-    /** @ngInject
+    /** @ngInject */
     constructor($stateProvider: ng.ui.IStateProvider) {
       $stateProvider
-        .state('teacher', {
-          url: '/teacher',
-          templateUrl: 'app/teachers/teachers.abstract.html',
+        .state('app.teachers', {
+          abstract: true,
+          url: '/teachers',
+          "views": {
+            "content": {
+              templateUrl: 'app/teachers/teachers.abstract.html'
+            }
+          }
+
         })
 
-        .state('list', {
-          parent:'teacher',
+        .state('app.teachers.list', {
           url: '/list',
-          templateUrl: 'app/teachers/teachers.list.html'
+          templateUrl: 'app/teachers/teachers.list.html',
+          controller: teachersListController,
+          controllerAs: 'vm'
         })
 
-        .state('editor', {
-          parent: 'teacher',
+        .state('app.teachers.editor', {
           url: '/editor',
           templateUrl: 'app/teachers/teachers.detail.html'
         });
-    }
 
-  }*/
+
+    }
+  }
+
 }
+
+angular.module('teachers').config(app.modules.teachers.TeachersConfig);

@@ -10,11 +10,19 @@ module app.components.entities {
   }
 
   export class EntityListController {
+    public thread;
+    public list;
+    public listElement;
+    public options;
 
-    public entityService;
     constructor() {
-
-    }
+      console.log(this);
+      this.thread.subscribe(function(success: any){
+        console.log(success.data);
+      }, function(error : any){
+        console.log(error);
+      })
+  }
 
 
     init() {
@@ -29,7 +37,10 @@ module app.components.entities {
     var directive = <ng.IDirective> {
       restrict: 'E',
       scope: {
-        entityService: '='
+        thread: '=',
+        list: '=',
+        listElement: '=',
+        options: '='
       },
       templateUrl: 'app/components/entities/list.html',
       controller: EntityListController,
@@ -40,9 +51,7 @@ module app.components.entities {
     return directive;
   }
 
-
-
-
-
-
 }
+
+angular.module('app.components.entities', [])
+  .directive('entityList', app.components.entities.entityList);

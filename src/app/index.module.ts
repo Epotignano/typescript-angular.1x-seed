@@ -27,11 +27,13 @@ module smileMotivationz {
     'app.components',
 
     // commons
+    'app.components.entities',
     'smz.services',
 
     // Modules
     'auth',
-    'dashboard'
+    'dashboard',
+    'teachers'
 
   ])
     .config(Config)

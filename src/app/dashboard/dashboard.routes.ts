@@ -11,7 +11,7 @@ module app.modules.dashboard {
     constructor($stateProvider: ng.ui.IStateProvider) {
       $stateProvider
         .state('app.dashboard', {
-          url: 'dashboard',
+          url: '/dashboard',
           views :{
             'content': {
               templateUrl: 'app/dashboard/dashboard.html'

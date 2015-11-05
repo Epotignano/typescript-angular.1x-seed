@@ -1,8 +1,8 @@
 <md-toolbar class="navigation-header md-whiteframe-1dp" layout="row" layout-align="start center">
-    <div class="logo" layout="row" layout-align="start center">
+    <a class="logo" layout="row" ui-sref="app.dashboard" layout-align="start center">
         <img class="logo-image" src="assets/images/logos/smile-motivationz.png" >
         <span class="logo-text">Smile Motivationz</span>
-    </div>
+    </a>
 </md-toolbar>
 
 <ms-nav ms-scroll="vm.msScrollOptions" class="scrollable">
@@ -16,12 +16,12 @@
 
         <ms-nav-toggle-items>
             <ms-nav-item>
-                <a ms-nav-button ui-sref="app.dashboard-project" ui-sref-active="active md-accent-bg" md-ink-ripple>
+                <a ms-nav-button ui-sref="app.teachers.list" ui-sref-active="active md-accent-bg" md-ink-ripple>
                     <span class="ms-nav-label" translate="NAVIGATION.LIST"></span>
                 </a>
             </ms-nav-item>
             <ms-nav-item>
-                <a ms-nav-button ui-sref="app.dashboard-project" ui-sref-active="active md-accent-bg" md-ink-ripple>
+                <a ms-nav-button ui-sref="app.teachers.editor" ui-sref-active="active md-accent-bg" md-ink-ripple>
                     <span class="ms-nav-label" translate="NAVIGATION.NEW"></span>
                 </a>
             </ms-nav-item>
