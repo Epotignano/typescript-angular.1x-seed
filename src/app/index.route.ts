@@ -30,7 +30,12 @@ module smileMotivationz {
         })
         .state('app.main', {
           url: 'main',
-          template: '<h1> I am the main and I know it</h1>'
+          views : {
+            'content@app.main' :{
+              template: '<h1> I am the main and I know it</h1>'
+            }
+          },
+
 
         });
 
