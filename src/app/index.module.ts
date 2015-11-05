@@ -29,8 +29,7 @@ module smileMotivationz {
     // Modules
     'auth',
 
-    // smz components
-    'smz.components.auth'
+
   ])
     .config(Config)
     .config(RouterConfig)

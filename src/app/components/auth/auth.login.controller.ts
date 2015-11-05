@@ -4,7 +4,7 @@
 
 
 
-module SmzAuth {
+module app.components.auth {
 
   'use strict';
 
@@ -30,5 +30,5 @@ module SmzAuth {
   }
 }
 
-angular.module('smz.components.auth')
-  .controller('LoginController', SmzAuth.LoginController);
+angular.module('smz.components.auth', [])
+  .controller('LoginController', app.components.auth.LoginController);

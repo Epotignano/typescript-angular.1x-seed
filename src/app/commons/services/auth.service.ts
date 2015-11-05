@@ -25,7 +25,7 @@ module app.services {
       private authTokenService : app.services.AuthTokenService,
       private run : any,
       public authInstance : any){
-        this.authInstance = this.$firebaseAuth(this.dbFactory);
+      this.authInstance = this.$firebaseAuth(this.dbFactory);
     }
 
     signIn(credentials: FirebaseCredentials) {
@@ -36,8 +36,8 @@ module app.services {
           this.authTokenService.setToken(result.uid)
         })
         .catch(function(err : any){
-            return err;
-          })
+          return err;
+        })
     }
 
     logOut() {
@@ -61,8 +61,8 @@ module app.services {
                 private dbFactory : Firebase,
                 private authKey : string,
                 private authInstance : any) {
-        this.authKey = 'uid';
-        this.authInstance = this.$firebaseAuth(this.dbFactory);
+      this.authKey = 'uid';
+      this.authInstance = this.$firebaseAuth(this.dbFactory);
     }
 
     setToken (userId ) {
@@ -79,8 +79,7 @@ module app.services {
 
   }
 
-  angular.module('smz.services')
+    angular.module('smz.services')
     .service('authService', AuthService)
     .service('authTokenService', AuthTokenService)
-
 }

@@ -8,7 +8,7 @@
 module Auth {
   'use strict';
 
-  angular.module('auth', [])
+  angular.module('auth', ['smz.components.auth'])
     .config(RouterConfig);
 }
 

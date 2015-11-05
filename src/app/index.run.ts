@@ -5,10 +5,21 @@ module smileMotivationz {
 
     static $inject = ['$log', '$rootScope', '$state'];
 
-    /*constructor($log: ng.ILogService, $rootScope : ng.IRootScopeService,
+    constructor($log: ng.ILogService, $rootScope : ng.IRootScopeService,
                 authTokenService : app.services.AuthTokenService,
                 $state: ng.ui.IStateService) {
       $log.debug('runBlock end');
+
+      $rootScope.$on('$stateChangeStart', function ()
+      {
+        $rootScope.loadingProgress = true;
+      });
+
+      $rootScope.$on('$stateChangeSuccess', function () {
+        $timeout(function () {
+          $rootScope.loadingProgress = false;
+        });
+      });
 
       $rootScope.$on('$stateChangeStart',	function(event, toState){
 
@@ -19,7 +30,7 @@ module smileMotivationz {
           window.location.hash = '/login'
         }
       });
-    }*/
+    }
 
 
 
