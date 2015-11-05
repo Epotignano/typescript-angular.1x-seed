@@ -18,10 +18,10 @@ module app.threads {
     /*@ngInject */
     constructor(){}
 
-    public defaultEvents = ['COLLECTION_LOAD',
-      'COLLECTION_OBJECT_REMOVED',
-      'OBJECT_LOAD', 'OBJECT_UPDATED',
-      'OBJECT_DELETE'];
+    public defaultEvents = {'COLLECTION_LOADED' : 'cloaded',
+      'COLLECTION_OBJECT_REMOVED': 'coremoved',
+      'OBJECT_LOAD': 'oloaded', 'OBJECT_UPDATE': 'oupdated',
+      'OBJECT_DELETE': 'odeleted'};
 
     setThread (threadKey: string, thread: any) {
       this.threads[threadKey] = thread;

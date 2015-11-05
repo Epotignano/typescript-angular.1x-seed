@@ -29,6 +29,7 @@ module smileMotivationz {
     // commons
     'app.components.entities',
     'smz.services',
+    'smz.threads',
 
     // Modules
     'auth',

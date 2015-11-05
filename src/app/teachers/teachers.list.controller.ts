@@ -10,10 +10,10 @@ module app.modules.teachers {
   export class teachersListController implements ITeachersList{
     public thread;
     constructor( private teachersService : app.services.TeachersService,
-                 private threadService : app.threads.Threads
+                 private threadsService : app.threads.Threads
     ) {
       this.teachersService.getCollection();
-      this.thread = this.threadService.getThread('Teacher')
+      this.thread = this.threadsService.getThread('Teacher')
     }
   }
 

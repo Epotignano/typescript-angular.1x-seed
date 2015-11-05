@@ -23,31 +23,31 @@ module app.services {
 
       this.thread = new Rx.Subject<{}>();
       this.collectionKey = 'teachers';
-      FirebaseCRUDFactory.setInstance(this.collectionKey);
+      this.FirebaseCRUDFactory.setInstance(this.collectionKey);
       this.threadsService.setThread('Teacher', this.thread)
     }
 
     getCollection() {
      this.FirebaseCRUDFactory.getCollection()
-       .then((result)=> this.thread.onNext({result, type:'read'}))
-       .catch((error)=> this.thread.onError({error, type:'read'}))
+       .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
+       .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
     }
 
     get(teacherId) {
       this.FirebaseCRUDFactory.get(teacherId)
-        .then((result: any)=> this.thread.onNext({result, type:'read'}))
+        .then((data: any)=> this.thread.onNext({data, type:'read'}))
         .catch((error: any)=> this.thread.onError({error, type:'read'}))
     }
 
     save(teacherObj) {
       this.FirebaseCRUDFactory.save(teacherObj)
-        .then((result)=> this.thread.onNext({result, type:'write'}))
+        .then((data)=> this.thread.onNext({data, type:'write'}))
         .catch((error)=> this.thread.onError({error, type:'write'}))
     }
 
     remove(teacherObj) {
       this.FirebaseCRUDFactory.remove(teacherObj)
-        .then((result)=> this.thread.onNext({result, type:'deletion'}))
+        .then((data)=> this.thread.onNext({data, type:'deletion'}))
         .catch((error)=> this.thread.onError({error, type:'deletion'}))
     }
   }

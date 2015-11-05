@@ -30,7 +30,7 @@ module smileMotivationz {
         });
 
 
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/app/dashboard');
 
     }
 
