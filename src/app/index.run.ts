@@ -12,13 +12,13 @@ module smileMotivationz {
 
       $rootScope.$on('$stateChangeStart', function ()
       {
-        $rootScope.loadingProgress = true;
+        $rootScope['loadingProgress'] = true;
       });
 
       $rootScope.$on('$stateChangeSuccess', function () {
-        $timeout(function () {
-          $rootScope.loadingProgress = false;
-        });
+
+          $rootScope['loadingProgress'] = false;
+
       });
 
       $rootScope.$on('$stateChangeStart',	function(event, toState){

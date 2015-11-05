@@ -29,6 +29,8 @@ module smileMotivationz {
     // Modules
     'auth',
 
+    'smz.services'
+
 
   ])
     .config(Config)
