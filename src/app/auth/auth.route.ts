@@ -22,7 +22,7 @@ module Auth {
         }
       });
 
-      $translatePartialLoaderProvider.addPart('app/components/auth/');
+      $translatePartialLoaderProvider.addPart('app/auth/');
 
     }
 

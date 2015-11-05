@@ -26,11 +26,12 @@ module smileMotivationz {
     // template components
     'app.components',
 
+    // commons
+    'smz.services',
+
     // Modules
     'auth',
-
-    'smz.services'
-
+    'dashboard'
 
   ])
     .config(Config)

@@ -27,17 +27,8 @@ module smileMotivationz {
               controller : 'QuickPanelController as vm'
             }
           }
-        })
-        .state('app.main', {
-          url: 'main',
-          views : {
-            'content@app.main' :{
-              template: '<h1> I am the main and I know it</h1>'
-            }
-          },
-
-
         });
+
 
       $urlRouterProvider.otherwise('/');
 

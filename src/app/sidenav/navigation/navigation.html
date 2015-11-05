@@ -1,7 +1,7 @@
 <md-toolbar class="navigation-header md-whiteframe-1dp" layout="row" layout-align="start center">
     <div class="logo" layout="row" layout-align="start center">
-        <span class="logo-image">F</span>
-        <span class="logo-text">FUSE</span>
+        <img class="logo-image" src="assets/images/logos/smile-motivationz.png" >
+        <span class="logo-text">Smile Motivationz</span>
     </div>
 </md-toolbar>
 
@@ -20,7 +20,34 @@
                     <span class="ms-nav-label" translate="NAVIGATION.LIST"></span>
                 </a>
             </ms-nav-item>
+            <ms-nav-item>
+                <a ms-nav-button ui-sref="app.dashboard-project" ui-sref-active="active md-accent-bg" md-ink-ripple>
+                    <span class="ms-nav-label" translate="NAVIGATION.NEW"></span>
+                </a>
+            </ms-nav-item>
         </ms-nav-toggle-items>
     </ms-nav-item>
+
+    <ms-nav-item ms-nav-toggle>
+        <a ms-nav-button md-ink-ripple>
+            <i class="icon-tile-four s16"></i>
+            <span class="ms-nav-label" translate="NAVIGATION.STUDENTS"></span>
+            <i class="icon-chevron-down s16 arrow"></i>
+        </a>
+
+        <ms-nav-toggle-items>
+            <ms-nav-item>
+                <a ms-nav-button ui-sref="app.dashboard-project" ui-sref-active="active md-accent-bg" md-ink-ripple>
+                    <span class="ms-nav-label" translate="NAVIGATION.LIST"></span>
+                </a>
+            </ms-nav-item>
+            <ms-nav-item>
+                <a ms-nav-button ui-sref="app.dashboard-project" ui-sref-active="active md-accent-bg" md-ink-ripple>
+                    <span class="ms-nav-label" translate="NAVIGATION.NEW"></span>
+                </a>
+            </ms-nav-item>
+        </ms-nav-toggle-items>
+    </ms-nav-item>
+
 
 </ms-nav>

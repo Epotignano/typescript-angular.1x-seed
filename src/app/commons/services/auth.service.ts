@@ -31,7 +31,7 @@ module app.services {
     signIn(credentials: FirebaseCredentials) {
       return this.authInstance.$authWithPassword(credentials)
         .then(this.run = (result) => { // <-- note syntax here
-          this.$state.go('app.main');
+          this.$state.go('app.dashboard');
           this.$cookies.put('smilemotivationz-email', result.password.email);
           this.authTokenService.setToken(result.uid)
         })
