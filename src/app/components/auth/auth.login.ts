@@ -13,7 +13,7 @@ module app.components.auth {
       scope: {},
       templateUrl: 'app/components/auth/auth.login.html',
       controller: 'LoginController',
-      controllerAs: 'login',
+      controllerAs: 'vm',
       bindToController: true
     };
 

@@ -23,12 +23,12 @@ module smileMotivationz {
 
       $rootScope.$on('$stateChangeStart',	function(event, toState){
 
-        var isAuthorized = authTokenService.isAuthorized();
+        /*var isAuthorized = authTokenService.isAuthorized();
 
         if(!isAuthorized && toState.name !== 'login'){
           event.preventDefault();
           window.location.hash = '/login'
-        }
+        }*/
       });
     }
 

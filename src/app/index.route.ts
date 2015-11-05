@@ -3,7 +3,9 @@ module smileMotivationz {
 
   export class RouterConfig {
     /** @ngInject */
-    constructor($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) {
+    constructor($stateProvider: ng.ui.IStateProvider,
+                $urlRouterProvider: ng.ui.IUrlRouterProvider,
+                $translateProvider) {
       $stateProvider
         .state('app', {
           abstract: true,
@@ -30,9 +32,10 @@ module smileMotivationz {
           url: 'main',
           template: '<h1> I am the main and I know it</h1>'
 
-        })
+        });
 
       $urlRouterProvider.otherwise('/');
+
     }
 
   }

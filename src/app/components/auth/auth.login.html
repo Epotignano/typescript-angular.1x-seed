@@ -1,20 +1,20 @@
 <div id="login" class="scrollable" ms-scroll>
     <div id="login-form-wrapper" layout="row" layout-align="center center">
-        <div id="login-form" class="md-whiteframe-8dp">
+        <div id="login-form" ng-form="loginForm" ng-submit="vm.signIn()" class="md-whiteframe-8dp">
             <div class="logo md-accent-bg">
-                <span>F</span>
+                <span>SM</span>
             </div>
 
             <div class="title" translate="LOGIN.TITLE">Log in to your account</div>
 
             <form>
                 <md-input-container flex md-no-float>
-                    <input ng-model="vm.form.username" placeholder="Username" translate
-                           translate-attr-placeholder="LOGIN.USERNAME">
+                    <input ng-model="vm.email" placeholder="Email" translate
+                           translate-attr-placeholder="LOGIN.EMAIL">
                 </md-input-container>
 
                 <md-input-container flex md-no-float>
-                    <input ng-model="vm.form.password" type="password" placeholder="Password" translate
+                    <input ng-model="vm.password" type="password" placeholder="Password" translate
                            translate-attr-placeholder="LOGIN.PASSWORD">
                 </md-input-container>
 
@@ -33,33 +33,6 @@
                     LOG IN
                 </md-button>
             </form>
-
-            <div class="separator">
-                <span class="text" translate="LOGIN.OR">OR</span>
-            </div>
-
-            <md-button class="md-raised google">
-                <div layout="row" layout-align="center center">
-                <span>
-                    <md-icon md-font-icon="icon-google-plus" class="s16"></md-icon>
-                    <span translate="LOGIN.WITH_GOOGLE">Log in with Google</span>
-                </span>
-                </div>
-            </md-button>
-
-            <md-button class="md-raised facebook">
-                <div layout="row" layout-align="center center">
-                <span>
-                    <md-icon md-font-icon="icon-facebook" class="s16"></md-icon>
-                    <span translate="LOGIN.WITH_FACEBOOK">Log in with Facebook</span>
-                </span>
-                </div>
-            </md-button>
-
-            <div class="register" layout="row" layout-sm="column" layout-align="center center">
-                <span class="text" translate="LOGIN.DONT_HAVE_ACCOUNT">Don't have an account?</span>
-                <a class="link" ui-sref="app.pages_auth_register" translate="LOGIN.CREATE_ACCOUNT">Create an account</a>
-            </div>
         </div>
     </div>
 </div>
