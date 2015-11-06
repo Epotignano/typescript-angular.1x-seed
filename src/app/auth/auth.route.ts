@@ -10,13 +10,22 @@ module Auth {
   export class RouterConfig {
     /** @ngInject */
     constructor($stateProvider: ng.ui.IStateProvider, $translatePartialLoaderProvider) {
-      $stateProvider.state('app.pages_auth_login', {
-        url  : 'login',
+
+      $stateProvider.state('access', {
+        abstract : true,
+        url: '/access',
         views: {
           'main@'                       : {
             templateUrl: 'app/core/layouts/basic.html'
-          },
-          'content@app.pages_auth_login': {
+          }
+        }
+      });
+
+
+      $stateProvider.state('access.pages_auth_login', {
+        url  : '/login',
+        views: {
+          'content': {
             templateUrl: 'app/auth/auth.login.html'
           }
         }

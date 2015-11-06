@@ -1,0 +1,19 @@
+{
+  "COMMONS": {
+    "EMAIL": "メールアドレス",
+    "NAME": "名前",
+    "USERNAME": "ユーザー名",
+    "NEW": "新規登録",
+    "EDIT": "編集",
+    "SAVE": "保存する",
+    "UPDATE": "更新",
+    "INFORMATION": "インフォメーション",
+    "PASSWORD": "パスワード",
+    "REPEAT_PASSWORD" : "パスワード再確認",
+    "FIRST_NAME": "名",
+    "LAST_NAME": "姓",
+    "TEACHERS": "先生",
+    "STUDENTS": "生徒",
+    "LIST": "名簿"
+  }
+}

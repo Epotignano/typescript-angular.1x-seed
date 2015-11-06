@@ -5,7 +5,7 @@ module smileMotivationz {
     /** @ngInject */
     constructor($stateProvider: ng.ui.IStateProvider,
                 $urlRouterProvider: ng.ui.IUrlRouterProvider,
-                $translateProvider) {
+                $translatePartialLoaderProvider) {
       $stateProvider
         .state('app', {
           abstract: true,
@@ -31,6 +31,9 @@ module smileMotivationz {
 
 
       $urlRouterProvider.otherwise('/app/dashboard');
+
+      //COMMONS TRANSLATIONS
+      $translatePartialLoaderProvider.addPart('app/commons');
 
     }
 

@@ -6,7 +6,7 @@ module app.modules.teachers{
 
   export class TeachersConfig {
     /** @ngInject */
-    constructor($stateProvider: ng.ui.IStateProvider) {
+    constructor($stateProvider: ng.ui.IStateProvider, $translatePartialLoaderProvider) {
       $stateProvider
         .state('app.teachers', {
           abstract: true,
@@ -33,8 +33,11 @@ module app.modules.teachers{
           controllerAs : 'vm'
         });
 
+      $translatePartialLoaderProvider.addPart('app/teachers');
 
     }
+
+
   }
 
 }

@@ -21,44 +21,21 @@ module app.modules.teachers {
 
   export class teachersEditorController implements ITeacherEditor {
 
-    public formFields = [
-      {
-        key: 'email',
-        type: 'input',
-        templateOptions: {
-          type: 'email',
-          label: 'Email address',
-          placeholder: 'Enter email'
-        }
-      },
-      {
-        key: 'password',
-        type: 'input',
-        templateOptions: {
-          type: 'password',
-          label: 'Password',
-          placeholder: 'Password'
-        }
-      },
-      {
-        key: 'file',
-        type: 'file',
-        templateOptions: {
-          label: 'File input',
-          description: 'Example block-level help text here',
-          url: 'https://example.com/upload'
-        }
-      },
-      {
-        key: 'checked',
-        type: 'checkbox',
-        templateOptions: {
-          label: 'Check me out'
-        }
-      }
-    ];
 
-   constructor(public teachersService : app.services.TeachersService){}
+  public formFields;
+  constructor(public teachersService : app.services.TeachersService, private $translate ){
+
+   this.formFields = [{
+       key: 'email',
+       type: 'input',
+       templateOptions: {
+         type: 'email',
+         label: this.$translate.instant('COMMONS.EMAIL')
+       }
+     }];
+
+
+   }
   }
 
 }
