@@ -52,6 +52,3 @@ module app.components.entities {
   }
 
 }
-
-angular.module('app.components.entities', [])
-  .directive('entityList', app.components.entities.entityList);

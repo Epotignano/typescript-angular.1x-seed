@@ -1,1 +1,8 @@
-<smz-teacher-editor></smz-teacher-editor>
+<h3>Hello</h3>
+
+<formly-form model="vm.teacher" fields="vm.formFields">
+    <button type="submit" class="btn btn-default"
+            ng-click="vm.teachersService.save(vm.entity)">
+        Submit
+    </button>
+</formly-form>

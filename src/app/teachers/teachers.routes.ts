@@ -28,7 +28,9 @@ module app.modules.teachers{
 
         .state('app.teachers.editor', {
           url: '/editor',
-          templateUrl: 'app/teachers/teachers.detail.html'
+          templateUrl: 'app/teachers/teachers.detail.html',
+          controller: teachersEditorController,
+          controllerAs : 'vm'
         });
 
 

@@ -14,6 +14,9 @@ module smileMotivationz {
     // core
     'app.core',
 
+    // formly
+    'formly',
+
     // navigation
     'app.navigation',
 
@@ -40,4 +43,5 @@ module smileMotivationz {
     .config(Config)
     .config(RouterConfig)
     .run(RunBlock)
+    .run(FormlyConfiguration)
 }

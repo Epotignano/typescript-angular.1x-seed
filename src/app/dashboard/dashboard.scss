@@ -1,10 +1,12 @@
+@import '../core/global-scss/global.scss';
+
 #dashboard {
 
     .header {
-        height: 320px;
-        min-height: 320px;
-        max-height: 320px;
-        background: url('../../assets/images/backgrounds/march.jpg') no-repeat 0 45%;
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
+        background: url('../../assets/images/backgrounds/header-bg.png') no-repeat 0 45%;
         background-size: 100% auto;
 
         .profile-image {
