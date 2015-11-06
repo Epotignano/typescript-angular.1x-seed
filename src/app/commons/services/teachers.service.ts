@@ -22,7 +22,7 @@ module app.services {
                 private threadsService : app.threads.Threads) {
 
       this.thread = new Rx.Subject<{}>();
-      this.collectionKey = 'teachers';
+      this.collectionKey = 'users';
       this.FirebaseCRUDFactory.setInstance(this.collectionKey);
       this.threadsService.setThread('Teacher', this.thread)
     }
@@ -40,6 +40,7 @@ module app.services {
     }
 
     save(teacherObj) {
+      teacherObj['role'] = 'teacher';
       this.FirebaseCRUDFactory.save(teacherObj)
         .then((data)=> this.thread.onNext({data, type:'write'}))
         .catch((error)=> this.thread.onError({error, type:'write'}))

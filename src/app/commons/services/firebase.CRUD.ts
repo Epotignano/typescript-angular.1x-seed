@@ -34,7 +34,7 @@ module app.services {
     }
 
     save(objectToSave) : ng.IPromise<Firebase> {
-      if(objectToSave.$save) return objectToSave.$save();
+      if(objectToSave.$save) {return objectToSave.$save()}
       return this.$firebaseArray(this.BaseRef).$add(objectToSave)
     }
 

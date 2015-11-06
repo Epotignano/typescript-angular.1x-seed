@@ -37,7 +37,8 @@ module smileMotivationz {
     // Modules
     'auth',
     'dashboard',
-    'teachers'
+    'teachers',
+    'students'
 
   ])
     .config(Config)
