@@ -6,7 +6,7 @@
 module app.services {
 
   interface ITeachersService {
-    getCollection():void;
+    getCollection(initConf:any):void;
     get(teacherId : string) : any;
     save(teacherData:any):any;
     remove(teacherObj : any) : any;
@@ -22,8 +22,8 @@ module app.services {
                 private threadsService : app.threads.Threads) {
 
       this.thread = new Rx.Subject<{}>();
-      this.collectionKey = 'users';
-      this.FirebaseCRUDFactory.setInstance(this.collectionKey);
+      var initConf = {collectionKey = 'users'};
+      this.FirebaseCRUDFactory.setInstance(initConf);
       this.threadsService.setThread('Teacher', this.thread)
     }
 

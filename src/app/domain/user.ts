@@ -15,13 +15,15 @@
     }
 
    export class Student extends User {
-      tests: any;
+      tests: any[];
+      actual_school : string;
+      desired_school : string;
+      actual_grade : string
 
     }
 
     export class Teacher extends User {
       assignedCourses : any;
-      salary: number;
     }
 
   }
