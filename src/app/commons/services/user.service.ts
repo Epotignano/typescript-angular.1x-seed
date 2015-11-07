@@ -27,7 +27,6 @@ module app.services {
       private threadsService : app.threads.Threads ) {
       this.collectionKey = 'teachers';
 
-      this.FirebaseCRUDFactory.setInstance(this.collectionKey);
       this.thread = new Rx.Subject<app.domain.User>();
 
       this.threadsService.setThread('User', this.thread)
@@ -35,7 +34,7 @@ module app.services {
 
     get() {
       if(!this.userData) {
-        this.FirebaseCRUDFactory.get(this.authTokenService.getToken())
+        this.FirebaseCRUDFactory.get(this.authTokenService.getToken(), "x")
           .then((result: any)=> this.thread.onNext({result: result}))
           .catch((error)=> this.thread.onError({error: error, type:'read'}))
       } else {
@@ -44,7 +43,7 @@ module app.services {
     }
 
     save(teacherObj) {
-      this.FirebaseCRUDFactory.save(teacherObj)
+      this.FirebaseCRUDFactory.save(teacherObj, "a")
         .then((result: any)=> this.thread.onNext({result, type:'write'}))
         .catch((error)=> this.thread.onError({error, type:'write'}))
     }

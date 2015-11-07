@@ -22,25 +22,26 @@ module app.services {
                 private threadsService : app.threads.Threads) {
 
       this.thread = new Rx.Subject<{}>();
-      this.FirebaseCRUDFactory.setInstance('users/teachers');
+      this.collectionKey = 'users/teachers';
+
       this.threadsService.setThread('Teacher', this.thread)
     }
 
     getCollection() {
-     this.FirebaseCRUDFactory.getCollection()
+     this.FirebaseCRUDFactory.getCollection(this.collectionKey)
        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
     }
 
     get(teacherId) {
-      this.FirebaseCRUDFactory.get(teacherId)
+      this.FirebaseCRUDFactory.get(teacherId, this.collectionKey)
         .then((data: any)=> this.thread.onNext({data, type:'read'}))
         .catch((error: any)=> this.thread.onError({error, type:'read'}))
     }
 
     save(teacherObj) {
 
-      this.FirebaseCRUDFactory.save(teacherObj)
+      this.FirebaseCRUDFactory.save(teacherObj,this.collectionKey)
         .then((data)=> this.thread.onNext({data, type:'write'}))
         .catch((error)=> this.thread.onError({error, type:'write'}))
     }
