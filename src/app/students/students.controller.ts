@@ -7,7 +7,6 @@ module app.modules.students {
 
   interface IStudentsList {}
 
-
   export class StudentsListController implements IStudentsList{
     public thread;
     public list: app.domain.User[];
@@ -42,13 +41,43 @@ module app.modules.students {
     }
   }
 
-  interface IStudentsEditor {}
+  interface IStudentsEditor {
+    save(studentObj)
+  }
 
   export class StudentsEditorController implements IStudentsEditor {
 
-
+  public student;
+  private studentThread;
+  private id;
   public formFields;
-  constructor(public studentsService : app.services.StudentsService, private $translate ){
+    private successFn;
+  constructor(public studentsService : app.services.StudentsService,
+              public threadsService : app.threads.Threads,
+              private $translate,
+              $stateParams:ng.ui.IStateParamsService
+  ){
+
+    this.successFn = (result) => {
+      if (result.EVENT == this.threadsService.defaultEvents.OBJECT_LOAD) {
+        this.student = result.data;
+      }
+    };
+
+    this.studentThread = threadsService.getThread('Student');
+
+    this.studentThread.subscribe(this.successFn);
+
+    if($stateParams['id']) {
+      this.id = $stateParams['id'];
+      this.studentsService.get($stateParams['id'])
+    } else {
+      this.student = {
+        role: 'student'
+      };
+    }
+
+
 
    this.formFields = [{
        key: 'lastName',
@@ -71,6 +100,17 @@ module app.modules.students {
 
 
    }
+
+    // Methods
+
+    save(studentObj){
+      if(this.id) {
+        this.studentsService.update(studentObj, this.id)
+      } else {
+        this.studentsService.create(studentObj);
+      }
+
+    }
   }
 
 }

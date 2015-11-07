@@ -26,7 +26,13 @@ module app.modules.students{
         })
 
         .state('app.students.create', {
-          url: '/editor',
+          url: '/create',
+          templateUrl: 'app/students/students.editor.html',
+          controller: StudentsEditorController,
+          controllerAs : 'vm'
+        })
+        .state('app.students.edit', {
+          url: '/edit/:id',
           templateUrl: 'app/students/students.editor.html',
           controller: StudentsEditorController,
           controllerAs : 'vm'

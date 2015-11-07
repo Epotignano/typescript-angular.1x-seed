@@ -6,11 +6,11 @@
 module app.services {
 
   interface ITeachersService {
-    getCollection(initConf:any):void;
-    get(teacherId : string) : any;
-    save(teacherData:any):any;
-    remove(teacherObj : any) : any;
-
+    getCollection():void;
+    get(teacherId);
+    create(teacherObj);
+    update(teacherObj, teacherId);
+    remove(teacherId);
   }
 
   export class TeachersService implements ITeachersService {
@@ -28,27 +28,31 @@ module app.services {
     }
 
     getCollection() {
-     this.FirebaseCRUDFactory.getCollection(this.collectionKey)
-       .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
-       .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
+      this.FirebaseCRUDFactory.getCollection(this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
+        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
     }
 
     get(teacherId) {
       this.FirebaseCRUDFactory.get(teacherId, this.collectionKey)
-        .then((data: any)=> this.thread.onNext({data, type:'read'}))
-        .catch((error: any)=> this.thread.onError({error, type:'read'}))
+        .then((data: any)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_LOAD }))
+        .catch((error: any)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents.OBJECT_LOAD }))
     }
 
-    save(teacherObj) {
-
-      this.FirebaseCRUDFactory.save(teacherObj,this.collectionKey)
-        .then((data)=> this.thread.onNext({data, type:'write'}))
-        .catch((error)=> this.thread.onError({error, type:'write'}))
+    create(teacherObj) {
+      this.FirebaseCRUDFactory.create(teacherObj, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_CREATE}))
+        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents.OBJECT_CREATE}))
     }
 
-    remove(teacherObj) {
-      this.FirebaseCRUDFactory.remove(teacherObj)
-        .then((data)=> this.thread.onNext({data, type:'deletion'}))
+    update(teacherObj, teacherId) {
+      this.FirebaseCRUDFactory.update(teacherObj, teacherId, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_UPDATE}))
+    }
+
+    remove(teacherId) {
+      this.FirebaseCRUDFactory.remove(teacherId, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_DELETE}))
         .catch((error)=> this.thread.onError({error, type:'deletion'}))
     }
   }

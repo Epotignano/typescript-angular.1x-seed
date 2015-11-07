@@ -7,10 +7,10 @@ module app.services {
 
   interface IStudentsService {
     getCollection():void;
-    get(teacherId : string) : any;
-    save(teacherData:any):any;
-    remove(teacherObj : any) : any;
-
+    get(studentId);
+    create(studentObj);
+    update(studentObj, studentId);
+    remove(studentId);
   }
 
   export class StudentsService implements IStudentsService {
@@ -29,8 +29,6 @@ module app.services {
       this.threadsService.setThread('Student', this.thread)
     }
 
-    // particular implementation for this service only
-
     getCollection() {
       this.FirebaseCRUDFactory.getCollection(this.collectionKey)
         .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
@@ -39,19 +37,24 @@ module app.services {
 
     get(studentId) {
       this.FirebaseCRUDFactory.get(studentId, this.collectionKey)
-        .then((data: any)=> this.thread.onNext({data, type:'read'}))
-        .catch((error: any)=> this.thread.onError({error, type:'read'}))
+        .then((data: any)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_LOAD }))
+        .catch((error: any)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents.OBJECT_LOAD }))
     }
 
-    save(studentObj) {
-      this.FirebaseCRUDFactory.save(studentObj, this.collectionKey)
-        .then((data)=> this.thread.onNext({data, type:'write'}))
-        .catch((error)=> this.thread.onError({error, type:'write'}))
+    create(studentObj) {
+      this.FirebaseCRUDFactory.create(studentObj, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_CREATE}))
+        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents.OBJECT_CREATE}))
     }
 
-    remove(studentObj) {
-      this.FirebaseCRUDFactory.remove(studentObj)
-        .then((data)=> this.thread.onNext({data, type:'deletion'}))
+    update(studentObj, studentId) {
+      this.FirebaseCRUDFactory.update(studentObj, studentId, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_UPDATE}))
+    }
+
+    remove(studentId) {
+      this.FirebaseCRUDFactory.remove(studentId, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_DELETE}))
         .catch((error)=> this.thread.onError({error, type:'deletion'}))
     }
   }

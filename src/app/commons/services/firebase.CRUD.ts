@@ -2,51 +2,65 @@
  * Created by mmasuyama on 10/24/2015.
  */
 
-
 module app.services {
-  interface IFirebaseCRUD {
+
+  export interface IFirebaseCRUD {
     getCollection(collectionKey:string) : ng.IPromise<AngularFireArray>;
-    get(objectId: string,collectionKey : string): ng.IPromise<AngularFireObject>;
-    save(objectToSave: AngularFireObject|any, collectionKey:string): ng.IPromise<Firebase>;
-    remove(objectToRemove: AngularFireObject) : ng.IPromise<Firebase>;
+    get(objectId: string,collectionKey : string);
+    create(objectData, collectionKey);
+    update(updateData, updateId, collectionKey);
+    remove(removeId, collectionKey);
   }
 
   export class FirebaseCRUD implements IFirebaseCRUD {
-
-
-    constructor(private $firebaseObject : AngularFireObjectService,
+    constructor(private $q : ng.IQService ,
                 private $firebaseArray : AngularFireArrayService,
                 private dbFactory : Firebase) {
     }
-
 
     getCollection(collectionKey): ng.IPromise<AngularFireArray> {
       return this.$firebaseArray(this.dbFactory.child(collectionKey)).$loaded()
     }
 
-    get(objectId: string, collectionKey:string) : ng.IPromise<AngularFireObject> {
-      return this.$firebaseObject(this.dbFactory.child(collectionKey).child(objectId)).$loaded()
+    get(objectId: string, collectionKey:string) :any {
+      var Promise = this.$q.defer();
+      this.dbFactory.child(collectionKey).child(objectId)
+        .on('value', function(snapshot){
+          Promise.resolve(snapshot.val())
+        });
+      return Promise.promise;
     }
 
-    save(objectToSave, collectionKey) : ng.IPromise<Firebase> {
-      if(objectToSave.$save) {
-        return objectToSave.$save()
-      }
+    create(objectToSave, collectionKey) {
       return this.$firebaseArray(this.dbFactory.child(collectionKey)).$add(objectToSave)
     }
 
-    remove(objectToRemove: AngularFireObject) : ng.IPromise<Firebase> {
-      return objectToRemove.$remove()
+    update(updateData, updateId, collectionKey) {
+      var Promise = this.$q.defer();
+      this.dbFactory.child(collectionKey).child(updateId).update(updateData, function(result){
+        Promise.resolve(result);
+      });
+      return Promise.promise;
+
+    }
+
+    remove(removeId, collectionKey) {
+      var Promise = this.$q.defer();
+      this.dbFactory.child(collectionKey).child(removeId).remove(function(result){
+        Promise.resolve(result);
+      });
+      return Promise.promise;
+
     }
   }
 
-  FirebaseCRUDFactory.$inject = ['$firebaseObject', '$firebaseArray', 'dbFactory'];
+  FirebaseCRUDFactory.$inject = ['$q', '$firebaseArray', 'dbFactory'];
 
   export function FirebaseCRUDFactory(
-    $firebaseObject : AngularFireObjectService,
+    $q : ng.IQService,
     $firebaseArray : AngularFireArrayService,
     dbFactory : Firebase) : FirebaseCRUD {
-    return new FirebaseCRUD($firebaseObject, $firebaseArray, dbFactory)
+    return new FirebaseCRUD($q, $firebaseArray, dbFactory)
   }
 
   angular.module('smz.services')

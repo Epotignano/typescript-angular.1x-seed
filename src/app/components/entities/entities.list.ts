@@ -21,18 +21,6 @@ module app.components.entities {
     }
   }
 
-  export class ConditionalSortController {
-
-    constructor($element, $attrs, $compile) {
-      var scope = $element.scope();
-      var entity = scope.$eval($attrs.conditionalSort);
-      if(entity.sort) {
-        $element.attr('st-sort', entity.key);
-      }
-    }
-
-  }
-
   /** @ngInject */
   export function entityList():ng.IDirective {
 
@@ -52,25 +40,4 @@ module app.components.entities {
 
     return directive;
   }
-
-  /** @ngInject */
-  /* TODO Implment later
-  export function conditionalSort():ng.IDirective {
-
-    var directive = <ng.IDirective> {
-      restrict: 'A',
-      controller: ConditionalSortController,
-      link: {
-        pre: angular.noop,
-        post: function($element, $compile){
-          $compile($element[0]);
-        }
-      },
-      controllerAs: 'condSortVm',
-      bindToController: true,
-    };
-
-    return directive;
-  }*/
-
 }

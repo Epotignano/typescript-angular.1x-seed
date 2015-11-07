@@ -20,6 +20,7 @@ module app.threads {
 
     public defaultEvents = {'COLLECTION_LOADED' : 'cloaded',
       'COLLECTION_OBJECT_REMOVED': 'coremoved',
+      'OBJECT_CREATE' : 'ocreated',
       'OBJECT_LOAD': 'oloaded', 'OBJECT_UPDATE': 'oupdated',
       'OBJECT_DELETE': 'odeleted'};
 

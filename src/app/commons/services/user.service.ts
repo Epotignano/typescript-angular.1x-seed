@@ -41,7 +41,7 @@ module app.services {
     }
 
     save(teacherObj) {
-      this.FirebaseCRUDFactory.save(teacherObj, "a")
+      this.FirebaseCRUDFactory.create(teacherObj, "a")
         .then((result: any)=> this.thread.onNext({result, type:'write'}))
         .catch((error)=> this.thread.onError({error, type:'write'}))
     }
