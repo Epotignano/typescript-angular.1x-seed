@@ -6,15 +6,18 @@
 <!-- CONTENT -->
 <md-content class="content" ms-scroll>
     <div>
-        <formly-form model="vm.student" fields="vm.formFields">
-            <div layout="row" layout-align="end" >
-                <md-button type="submit" ng-click="vm.studentsService.save(vm.student)"
-                           class="md-raised md-primary"
-                           aria-label="{{ COMMONS.SAVE |translate }}">
-                    <span translate="COMMONS.SAVE"></span>
-                </md-button>
-            </div>
-        </formly-form>
+        <form name="studentsForm" ng-submit="vm.studentsService.save(vm.student)">
+          <formly-form model="vm.student" fields="vm.formFields"
+                       >
+              <div layout="row" layout-align="end" >
+                  <md-button type="submit"
+                             class="md-raised md-primary"
+                             aria-label="{{ COMMONS.SAVE |translate }}">
+                      <span translate="COMMONS.SAVE"></span>
+                  </md-button>
+              </div>
+          </formly-form>
+        </form>
     </div>
 </md-content>
 

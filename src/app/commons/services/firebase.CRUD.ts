@@ -5,7 +5,7 @@
 
 module app.services {
   interface IFirebaseCRUD {
-    setInstance(collectionKey:string);
+    setInstance(collectionKey:string, query:any);
     getCollection() : ng.IPromise<AngularFireArray>;
     get(objectId: string): ng.IPromise<AngularFireObject>;
     save(objectToSave: AngularFireObject|any): ng.IPromise<Firebase>;
@@ -20,8 +20,11 @@ module app.services {
                 private dbFactory : Firebase) {
     }
 
-    setInstance(collectionKey: string) {
-      this.BaseRef = this.dbFactory.child(collectionKey);
+    setInstance(initConf) {
+      if(initConf.query) {
+        this.BaseRef = this.dbFactory.child(initConf.collectionKey).orderByChild(initConf.query.orderBy).equalTo(initConf.query.equalTo);
+      }
+      this.BaseRef = this.dbFactory.child(initConf.collectionKey);
     }
 
     getInstance (): Firebase {
@@ -37,7 +40,9 @@ module app.services {
     }
 
     save(objectToSave) : ng.IPromise<Firebase> {
-      if(objectToSave.$save) {return objectToSave.$save()}
+      if(objectToSave.$save) {
+        return objectToSave.$save()
+      }
       return this.$firebaseArray(this.BaseRef).$add(objectToSave)
     }
 

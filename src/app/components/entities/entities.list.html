@@ -1,5 +1,22 @@
 <div class="content">
-    <h1 translate="{{vm.options.titleKey}}"></h1>
+
+    <table st-table="vm.list" class="dataTable row-border hover no-footer dtr-inline">
+        <thead>
+        <tr>
+            <th ng-repeat="entity in vm.entityConf ">
+                {{ entity.label }}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="element in vm.list">
+            <td ng-repeat="entity in vm.entityConf">{{ element[entity.key] }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
 </div>
 
 

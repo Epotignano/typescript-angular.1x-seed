@@ -12,22 +12,8 @@ module app.components.entities {
   export class EntityListController {
     public thread;
     public list;
-    public listElement;
+    public entityConf;
     public options;
-
-    constructor() {
-      console.log(this);
-      this.thread.subscribe(function(success: any){
-        console.log(success.data);
-      }, function(error : any){
-        console.log(error);
-      })
-  }
-
-
-    init() {
-      //this.entityService
-    }
 
   }
 
@@ -39,10 +25,10 @@ module app.components.entities {
       scope: {
         thread: '=',
         list: '=',
-        listElement: '=',
+        entityConf: '=',
         options: '='
       },
-      templateUrl: 'app/components/entities/list.html',
+      templateUrl: 'app/components/entities/entities.list.html',
       controller: EntityListController,
       controllerAs: 'vm',
       bindToController: true
