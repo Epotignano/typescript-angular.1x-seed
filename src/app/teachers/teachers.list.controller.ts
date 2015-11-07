@@ -21,9 +21,13 @@ module app.modules.teachers {
 
   export class teachersEditorController implements ITeacherEditor {
 
-
+  public teacher;
   public formFields;
   constructor(public teachersService : app.services.TeachersService, private $translate ){
+
+    this.teacher = {
+      role: 'teacher'
+    }
 
    this.formFields = [{
        key: 'email',

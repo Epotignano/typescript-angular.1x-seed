@@ -12,7 +12,6 @@ module app.services {
     remove(objectToRemove: AngularFireObject) : ng.IPromise<Firebase>;
   }
 
-
   export class FirebaseCRUD implements IFirebaseCRUD {
     private BaseRef : any;
 
@@ -23,6 +22,10 @@ module app.services {
 
     setInstance(collectionKey: string) {
       this.BaseRef = this.dbFactory.child(collectionKey);
+    }
+
+    getInstance (): Firebase {
+      return this.BaseRef;
     }
 
     getCollection(): ng.IPromise<AngularFireArray> {

@@ -28,9 +28,12 @@ module app.services {
     }
 
     getCollection() {
-      this.FirebaseCRUDFactory.getCollection()
-        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
-        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
+      this.FirebaseCRUDFactory.getInstance()
+        .orderByChild('role')
+        .equalTo('student')
+        .on('loaded', function(data){
+          this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']})
+      });
     }
 
     get(teacherId) {
@@ -40,7 +43,6 @@ module app.services {
     }
 
     save(teacherObj) {
-      teacherObj['role'] = 'student';
       this.FirebaseCRUDFactory.save(teacherObj)
         .then((data)=> this.thread.onNext({data, type:'write'}))
         .catch((error)=> this.thread.onError({error, type:'write'}))
