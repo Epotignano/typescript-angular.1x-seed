@@ -13,11 +13,9 @@ module app.services {
 
   export class UserService implements IUserService {
 
-
     public collectionKey: string;
     private userData: app.domain.Course;
     private thread: Rx.Subject<{}>;
-
 
     /* @ngInject */
 

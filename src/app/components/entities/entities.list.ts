@@ -6,14 +6,30 @@ module app.components.entities {
 
 
   interface IEntityListController {
-    init()
+    columnIsSortable(entity)
   }
 
-  export class EntityListController {
+  export class EntityListController implements IEntityListController{
     public thread;
     public list;
     public entityConf;
     public options;
+
+
+    columnIsSortable(entity) {
+      return (entity.sort) ? entity.key : ''
+    }
+  }
+
+  export class ConditionalSortController {
+
+    constructor($element, $attrs, $compile) {
+      var scope = $element.scope();
+      var entity = scope.$eval($attrs.conditionalSort);
+      if(entity.sort) {
+        $element.attr('st-sort', entity.key);
+      }
+    }
 
   }
 
@@ -32,6 +48,25 @@ module app.components.entities {
       controller: EntityListController,
       controllerAs: 'vm',
       bindToController: true
+    };
+
+    return directive;
+  }
+
+  /** @ngInject */
+  export function conditionalSort():ng.IDirective {
+
+    var directive = <ng.IDirective> {
+      restrict: 'A',
+      controller: ConditionalSortController,
+      link: {
+        pre: angular.noop,
+        post: function($element, $compile){
+          $compile($element[0]);
+        }
+      },
+      controllerAs: 'condSortVm',
+      bindToController: true,
     };
 
     return directive;

@@ -25,7 +25,8 @@ module app.modules.students {
     this.studentConf = [
       {
         key: 'lastName',
-        label: $translate.instant('COMMONS.LAST_NAME')
+        label: $translate.instant('COMMONS.LAST_NAME'),
+        sort : true
       },
       {
         key: 'firstName',

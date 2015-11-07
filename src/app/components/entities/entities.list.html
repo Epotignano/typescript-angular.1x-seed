@@ -1,16 +1,21 @@
 <div class="content">
 
-    <table st-table="vm.list" class="dataTable row-border hover no-footer dtr-inline">
+    <table st-table="dislplayedCol" ng-if="vm.list" st-safe-src="vm.list" class="dataTable row-border hover no-footer dtr-inline">
         <thead>
         <tr>
-            <th ng-repeat="entity in vm.entityConf ">
+            <th ng-repeat="entity in vm.entityConf" st-sort="entity.key">
                 {{ entity.label }}
             </th>
+            <th></th>
+
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="element in vm.list">
+        <tr ng-repeat="element in dislplayedCol">
             <td ng-repeat="entity in vm.entityConf">{{ element[entity.key] }}</td>
+            <td>
+
+            </td>
         </tr>
         </tbody>
     </table>

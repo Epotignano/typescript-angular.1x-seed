@@ -6,5 +6,6 @@
 module app.components.entities {
   angular.module('app.components.entities', ['smart-table'])
     // .directive('entityEditor', entityEditor)
-    .directive('entityList', entityList);
+    .directive('entityList', entityList)
+    .directive('conditionalSort', conditionalSort);
 }
