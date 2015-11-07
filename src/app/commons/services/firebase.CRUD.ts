@@ -20,11 +20,8 @@ module app.services {
                 private dbFactory : Firebase) {
     }
 
-    setInstance(initConf) {
-      if(initConf.query) {
-        this.BaseRef = this.dbFactory.child(initConf.collectionKey).orderByChild(initConf.query.orderBy).equalTo(initConf.query.equalTo);
-      }
-      this.BaseRef = this.dbFactory.child(initConf.collectionKey);
+    setInstance(collectionKey) {
+      this.BaseRef = this.dbFactory.child(collectionKey);
     }
 
     getInstance (): Firebase {

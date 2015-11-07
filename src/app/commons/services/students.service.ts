@@ -16,25 +16,26 @@ module app.services {
   export class StudentsService implements IStudentsService {
     private collectionKey: string;
     private thread: Rx.Subject<{}>;
+    public filteredCollection;
     /* @ngInject */
 
     constructor(private FirebaseCRUDFactory : app.services.FirebaseCRUD,
+                private $firebaseArray : AngularFireArrayService,
                 private threadsService : app.threads.Threads) {
 
       this.thread = new Rx.Subject<{}>();
-      this.collectionKey = 'users';
+      this.collectionKey = 'users/students';
 
-      this.FirebaseCRUDFactory.setInstance(this.collectionKey, {orderBy: 'role', equalTo: 'student'});
+      this.FirebaseCRUDFactory.setInstance(this.collectionKey);
       this.threadsService.setThread('Student', this.thread)
     }
 
+    // particular implementation for this service only
+
     getCollection() {
-      this.FirebaseCRUDFactory.getInstance()
-        .orderByChild('role')
-        .equalTo('student')
-        .on('loaded', function(data){
-          this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']})
-      });
+      this.FirebaseCRUDFactory.getCollection()
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
+        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
     }
 
     get(teacherId) {

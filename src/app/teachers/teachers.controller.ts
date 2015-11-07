@@ -8,12 +8,28 @@ module app.modules.teachers {
   interface ITeachersList {}
 
   export class teachersListController implements ITeachersList{
+    public list : app.domain.Teacher[] = [];
+    public teacherConf;
     public thread;
+
     constructor( private teachersService : app.services.TeachersService,
-                 private threadsService : app.threads.Threads
+                 private threadsService : app.threads.Threads,
+                 $translate
     ) {
       this.teachersService.getCollection();
-      this.thread = this.threadsService.getThread('Teacher')
+      this.thread = this.threadsService.getThread('Teacher');
+
+      this.teacherConf = [{
+        key: 'email',
+        label: $translate.instant('COMMONS.EMAIL')
+        }];
+
+      this.thread.subscribe(
+        (data) => this.list = data.data,
+        (error) => console.log(error)
+      )
+
+
     }
   }
 
@@ -26,8 +42,9 @@ module app.modules.teachers {
   constructor(public teachersService : app.services.TeachersService, private $translate ){
 
     this.teacher = {
-      role: 'teacher'
-    }
+      role: 'teacher',
+      registered: false
+    };
 
    this.formFields = [{
        key: 'email',

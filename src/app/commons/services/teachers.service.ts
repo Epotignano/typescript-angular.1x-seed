@@ -22,8 +22,7 @@ module app.services {
                 private threadsService : app.threads.Threads) {
 
       this.thread = new Rx.Subject<{}>();
-      var initConf = {collectionKey = 'users'};
-      this.FirebaseCRUDFactory.setInstance(initConf);
+      this.FirebaseCRUDFactory.setInstance('users/teachers');
       this.threadsService.setThread('Teacher', this.thread)
     }
 
