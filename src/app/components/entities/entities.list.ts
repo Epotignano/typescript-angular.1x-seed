@@ -54,6 +54,7 @@ module app.components.entities {
   }
 
   /** @ngInject */
+  /* TODO Implment later
   export function conditionalSort():ng.IDirective {
 
     var directive = <ng.IDirective> {
@@ -70,6 +71,6 @@ module app.components.entities {
     };
 
     return directive;
-  }
+  }*/
 
 }
