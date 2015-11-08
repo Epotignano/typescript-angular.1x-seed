@@ -26,8 +26,15 @@ module app.modules.teachers{
           controllerAs: 'vm'
         })
 
-        .state('app.teachers.editor', {
-          url: '/editor',
+        .state('app.teachers.create', {
+          url: '/create',
+          templateUrl: 'app/teachers/teachers.detail.html',
+          controller: teachersEditorController,
+          controllerAs : 'vm'
+        })
+
+        .state('app.teachers.edit', {
+          url: '/edit/:id',
           templateUrl: 'app/teachers/teachers.detail.html',
           controller: teachersEditorController,
           controllerAs : 'vm'

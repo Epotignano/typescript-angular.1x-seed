@@ -58,6 +58,8 @@ module app.modules.students {
               $stateParams:ng.ui.IStateParamsService
   ){
 
+    // Data obtaining and save or update logic
+
     this.successFn = (result) => {
       if (result.EVENT == this.threadsService.defaultEvents.OBJECT_LOAD) {
         this.student = result.data;

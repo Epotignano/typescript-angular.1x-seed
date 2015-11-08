@@ -14,6 +14,7 @@
     "LAST_NAME": "姓",
     "TEACHERS": "先生",
     "STUDENTS": "生徒",
-    "LIST": "名簿"
+    "LIST": "名簿",
+    "SEARCH" : "探す"
   }
 }

@@ -1,5 +1,13 @@
 <div class="content">
 
+    <md-input-container>
+        <label>
+            <i class="icon-magnify"></i> <span translate="COMMONS.SEARCH"></span>
+        </label>
+        <input type="text" ng-model="vm.filter.text">
+    </md-input-container>
+
+
     <table st-table="dislplayedCol" st-safe-src="vm.list" class="dataTable row-border hover no-footer dtr-inline">
         <thead>
         <tr>
@@ -7,14 +15,19 @@
                 {{ entity.label }}
             </th>
             <th></th>
-
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="element in dislplayedCol">
+        <tr ng-repeat="element in (filteredList = (dislplayedCol | filter: vm.filter.text  ))">
             <td ng-repeat="entity in vm.entityConf">{{ element[entity.key] }}</td>
             <td>
-                <a ui-sref="{{vm.options.editionSref}}({'id' : element.$id})">A</a>
+                <md-button  class="md-fab md-mini md-accent">
+                    <md-icon md-font-icon="icon-pencil"
+                             ui-sref="{{vm.options.editionSref}}({'id' : element.$id})"
+                            >
+                    </md-icon>
+                </md-button>
+
             </td>
         </tr>
         </tbody>
