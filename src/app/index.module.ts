@@ -37,6 +37,7 @@ module smileMotivationz {
     // Modules
     'auth',
     'dashboard',
+    'courses',
     'teachers',
     'students'
 

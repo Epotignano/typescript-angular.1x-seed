@@ -1,44 +1,64 @@
 /**
- * Created by mmasuyama on 10/22/2015.
+ * Created by mmasuyama on 10/24/2015.
  */
-/*
+/// <reference path="../../../../.tmp/typings/tsd.d.ts" />
+
 module app.services {
 
-    interface ICourseDataResource{
-      getCourse(courseId : string) : void;
-      createCourse(courseData : any) : void;
-      getSubject(): void;
+  interface ICoursesService {
+    getCollection():void;
+    get(courseId);
+    create(courseObj);
+    update(courseObj, courseId);
+    remove(courseId);
+  }
+
+  export class CoursesService implements ICoursesService {
+    private collectionKey: string;
+    private thread: Rx.Subject<{}>;
+    public filteredCollection;
+    /* @ngInject */
+
+    constructor(private FirebaseCRUDFactory : app.services.FirebaseCRUD,
+                private $firebaseArray : AngularFireArrayService,
+                private threadsService : app.threads.Threads) {
+
+      this.thread = new Rx.Subject<{}>();
+      this.collectionKey = 'courses';
+
+      this.threadsService.setThread('Course', this.thread)
     }
 
-    export class CourseService implements ICourseDataResource {
-
-      static $inject = ['rx', 'firebase'];
-      private subject = Rx.Subject;
-
-      constructor() {
-
-      }
-
-      getSubject() {
-        return this.subject;
-      }
-
-      getCourse(courseId: string) {
-        return this.db.child(courseId).on('value', function(snapshot : any){
-          this.subject.onNext({event: 'read', data: snapshot.val()});
-        })
-      }
-
-      createCourse(courseData : any) {
-        this.db.set(courseData, function(error: any){
-            if(error) {
-              this.subject.onError({event: 'creation'});
-              return;
-            }
-            this.subject.onNext({event: 'creation'});
-        })
-      }
+    getCollection() {
+      this.FirebaseCRUDFactory.getCollection(this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
+        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents['COLLECTION_LOADED']}))
     }
 
+    get(courseId) {
+      this.FirebaseCRUDFactory.get(courseId, this.collectionKey)
+        .then((data: any)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_LOAD }))
+        .catch((error: any)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents.OBJECT_LOAD }))
+    }
+
+    create(courseObj) {
+      this.FirebaseCRUDFactory.create(courseObj, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_CREATE}))
+        .catch((error)=> this.thread.onError({error, 'EVENT': this.threadsService.defaultEvents.OBJECT_CREATE}))
+    }
+
+    update(courseObj, courseId) {
+      this.FirebaseCRUDFactory.update(courseObj, courseId, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_UPDATE}))
+    }
+
+    remove(courseId) {
+      this.FirebaseCRUDFactory.remove(courseId, this.collectionKey)
+        .then((data)=> this.thread.onNext({data, 'EVENT': this.threadsService.defaultEvents.OBJECT_DELETE}))
+        .catch((error)=> this.thread.onError({error, type:'deletion'}))
+    }
+  }
+
+  angular.module('smz.services')
+    .service('coursesService', CoursesService)
 }
-*/
