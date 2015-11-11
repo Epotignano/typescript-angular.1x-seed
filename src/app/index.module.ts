@@ -16,31 +16,26 @@ module smileMotivationz {
 
     // formly
     'formly',
-
+    // toaster listener module
+    'toaster',
     // navigation
     'app.navigation',
-
     // toolbar
     'app.toolbar',
-
     // quick panel
     'app.quick-panel',
-
     // template components
     'app.components',
-
     // commons
     'app.components.entities',
     'smz.services',
     'smz.threads',
-
     // Modules
     'auth',
     'dashboard',
     'courses',
     'teachers',
     'students'
-
   ])
     .config(Config)
     .config(RouterConfig)

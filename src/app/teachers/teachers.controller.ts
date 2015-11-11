@@ -28,23 +28,32 @@ module app.modules.teachers {
         (data) => this.list = data.data,
         (error) => console.log(error)
       )
-
-
     }
   }
 
-  interface ITeacherEditor {}
+  interface ITeacherEditor {
+    save(teacherObj)
+  }
 
   export class teachersEditorController implements ITeacherEditor {
 
   public teacher;
   public formFields;
-  constructor(public teachersService : app.services.TeachersService, private $translate ){
+  private successFn;
+  private teacherThread;
+  private id;
 
-    this.teacher = {
-      role: 'teacher',
-      registered: false
-    };
+  constructor(public teachersService : app.services.TeachersService, private threadsService : app.threads.Threads,  private $translate, $stateParams ){
+
+    if($stateParams['id']) {
+      this.id = $stateParams['id'];
+      this.teachersService.get($stateParams['id'])
+    } else {
+      this.teacher = {
+        role: 'teacher',
+        registered: false
+      };
+    }
 
    this.formFields = [{
        key: 'email',
@@ -56,7 +65,27 @@ module app.modules.teachers {
      }];
 
 
+    this.successFn = (result) => {
+      if (result.EVENT == this.threadsService.defaultEvents.OBJECT_LOAD) {
+        this.teacher = result.data;
+      }
+    };
+
+    this.teacherThread = threadsService.getThread('Teacher');
+
+    this.teacherThread.subscribe(this.successFn);
    }
+
+    // Methods
+
+    save(teacherObj){
+      if(this.id) {
+        this.teachersService.update(teacherObj, this.id)
+      } else {
+        this.teachersService.create(teacherObj);
+      }
+
+    }
   }
 
 }

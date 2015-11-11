@@ -9,6 +9,7 @@ module app.threads {
   interface IThreads  {
     setThread(threadKey: string, thread: any)
     getThread(threadKey: string)
+    getThreads()
   }
 
   export class Threads implements IThreads{
@@ -32,6 +33,9 @@ module app.threads {
       return this.threads[threadKey]
     }
 
+    getThreads() {
+      return this.threads;
+    }
   }
 
 

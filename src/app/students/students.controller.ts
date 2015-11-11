@@ -31,6 +31,11 @@ module app.modules.students {
         key: 'firstName',
         label: $translate.instant('COMMONS.FIRST_NAME')
       },
+      {
+        key: 'grade',
+        label: $translate.instant("COMMONS.GRADE")
+      }
+
 
     ];
 
@@ -79,8 +84,6 @@ module app.modules.students {
       };
     }
 
-
-
    this.formFields = [{
        key: 'lastName',
        type: 'input',
@@ -96,6 +99,33 @@ module app.modules.students {
          type: 'text',
          label: this.$translate.instant('COMMONS.FIRST_NAME')
        }
+     },
+
+     {
+       key : 'address',
+       type: 'input',
+       templateOptions : {
+         type: 'text',
+         label: this.$translate.instant('COMMONS.ADDRESS')
+       }
+     },
+     {
+       key: 'grade',
+       type: 'input',
+       templateOptions : {
+         type: 'text',
+         label: this.$translate.instant("COMMONS.GRADE")
+       }
+     },
+
+     {
+       key : 'age',
+       type: 'input',
+       templateOptions: {
+         type: 'number',
+         label: this.$translate.instant('COMMONS.AGE')
+       }
+
      }
 
    ];

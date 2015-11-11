@@ -15,6 +15,9 @@
     "TEACHERS": "先生",
     "STUDENTS": "生徒",
     "LIST": "名簿",
-    "SEARCH" : "探す"
+    "SEARCH" : "探す",
+    "AGE": "年齢",
+    "ADDRESS": "住所",
+    "GRADE" : "学年"
   }
 }

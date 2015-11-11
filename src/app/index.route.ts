@@ -10,6 +10,9 @@ module smileMotivationz {
         .state('app', {
           abstract: true,
           url: '/app',
+          controller: function(toasterService) {
+            console.log(toasterService)
+          },
           views   : {
             'main@'         : {
               templateUrl: 'app/core/layouts/default.html'
