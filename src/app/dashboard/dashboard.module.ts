@@ -4,7 +4,7 @@
 
 module app.modules.dashboard {
 
-  'use strict'
+  'use strict';
 
-  angular.module('dashboard', [])
+  angular.module('dashboard', []);
 }

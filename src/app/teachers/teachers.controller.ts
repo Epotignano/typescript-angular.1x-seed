@@ -12,9 +12,10 @@ module app.modules.teachers {
     public teacherConf;
     public thread;
 
+    /** @ngInject */ 
     constructor( private teachersService : app.services.TeachersService,
                  private threadsService : app.threads.Threads,
-                 $translate
+                 private $translate
     ) {
       this.teachersService.getCollection();
       this.thread = this.threadsService.getThread('Teacher');
@@ -27,7 +28,7 @@ module app.modules.teachers {
       this.thread.subscribe(
         (data) => this.list = data.data,
         (error) => console.log(error)
-      )
+      );
     }
   }
 
@@ -43,11 +44,15 @@ module app.modules.teachers {
   private teacherThread;
   private id;
 
-  constructor(public teachersService : app.services.TeachersService, private threadsService : app.threads.Threads,  private $translate, $stateParams ){
+  /** @ngInject */ 
+  constructor(public teachersService: app.services.TeachersService, 
+    private threadsService : app.threads.Threads, 
+    private $translate, 
+    private $stateParams ){
 
     if($stateParams['id']) {
       this.id = $stateParams['id'];
-      this.teachersService.get($stateParams['id'])
+      this.teachersService.get($stateParams['id']);
     } else {
       this.teacher = {
         role: 'teacher',
@@ -80,7 +85,7 @@ module app.modules.teachers {
 
     save(teacherObj){
       if(this.id) {
-        this.teachersService.update(teacherObj, this.id)
+        this.teachersService.update(teacherObj, this.id);
       } else {
         this.teachersService.create(teacherObj);
       }
@@ -89,4 +94,3 @@ module app.modules.teachers {
   }
 
 }
-

@@ -1,0 +1,10 @@
+<md-autocomplete md-selected-item="model[options.key]" md-search-text="autocompleteVm.searchText"
+                 md-items="item in filterdCollection = ( options.templateOptions.collection | filter:autocompleteVm.searchText ) "
+                 md-item-text="item[options.templateOptions.labelKey]">
+    <md-item-template>
+        <span md-highlight-text="autocompleteVm.searchText">{{ item[options.templateOptions.labelKey] }}</span>
+    </md-item-template>
+    <md-not-found>
+        <strong>{{autocompleteVm.searchText}}</strong> <span translate="COMMONS.AUTOCOMPLETE.NO_MATCHES"></span>
+    </md-not-found>
+</md-autocomplete>

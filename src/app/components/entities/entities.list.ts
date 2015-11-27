@@ -17,7 +17,7 @@ module app.components.entities {
 
 
     columnIsSortable(entity) {
-      return (entity.sort) ? entity.key : ''
+      return (entity.sort) ? entity.key : '';
     }
   }
 

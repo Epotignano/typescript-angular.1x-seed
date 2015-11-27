@@ -13,26 +13,28 @@ module app.services {
   }
 
   export class FirebaseCRUD implements IFirebaseCRUD {
+
+    /** @ngInject */ 
     constructor(private $q : ng.IQService ,
                 private $firebaseArray : AngularFireArrayService,
                 private dbFactory : Firebase) {
     }
 
     getCollection(collectionKey): ng.IPromise<AngularFireArray> {
-      return this.$firebaseArray(this.dbFactory.child(collectionKey)).$loaded()
+      return this.$firebaseArray(this.dbFactory.child(collectionKey)).$loaded();
     }
 
     get(objectId: string, collectionKey:string) :any {
       var Promise = this.$q.defer();
       this.dbFactory.child(collectionKey).child(objectId)
         .on('value', function(snapshot){
-          Promise.resolve(snapshot.val())
+          Promise.resolve(snapshot.val());
         });
       return Promise.promise;
     }
 
     create(objectToSave, collectionKey) {
-      return this.$firebaseArray(this.dbFactory.child(collectionKey)).$add(objectToSave)
+      return this.$firebaseArray(this.dbFactory.child(collectionKey)).$add(objectToSave);
     }
 
     update(updateData, updateId, collectionKey) {
@@ -60,13 +62,11 @@ module app.services {
     $q : ng.IQService,
     $firebaseArray : AngularFireArrayService,
     dbFactory : Firebase) : FirebaseCRUD {
-    return new FirebaseCRUD($q, $firebaseArray, dbFactory)
+    return new FirebaseCRUD($q, $firebaseArray, dbFactory);
   }
 
   angular.module('smz.services')
-    .factory('FirebaseCRUDFactory', FirebaseCRUDFactory)
+    .factory('FirebaseCRUDFactory', FirebaseCRUDFactory);
 
 
 }
-
-

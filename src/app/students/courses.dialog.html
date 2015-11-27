@@ -1,0 +1,38 @@
+
+<md-dialog style="max-width: 800px;" aria-label="{{ STUDENTS.ADD_COURSE | translate }} " style="max-width:800px">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate="STUDENTS.ADD_COURSE"></h2>
+                <span class="flex"></span>
+                <md-button class="md-icon-button" ng-click="dialogVm.cancel()">
+                    <i class="icon-close s24"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form name="courseForm">
+                <formly-form model="dialogVm.course" fields="dialogVm.courseFormFields">
+                    <div layout="row" layout-align="end">
+                        <md-button type="button" ng-click="dialogVm.addCourse(dialogVm.course)"
+                                   class="md-raised md-accent"
+                                   aria-label="{{ COMMONS.ADD |translate }}">
+                            <span translate="COMMONS.ADD"></span>
+                        </md-button>
+                    </div>
+                </formly-form>
+            </form>
+            <md-list>
+                <md-list-item ng-repeat="course in dialogVm.selectedCourses">
+                    <span>{{ course.name }}</span>
+                </md-list-item>
+            </md-list>
+
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button ng-click="dialogVm.cancel()" class="md-default"><span translate="COMMONS.CANCEL"></span></md-button>
+            <md-button ng-click="dialogVm.add()" class="md-accent"> <span translate="COMMONS.ADD"></span></md-button>
+        </div>
+    </form>
+</md-dialog>

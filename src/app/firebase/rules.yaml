@@ -1,0 +1,77 @@
+functions:
+  - isLoggedIn(): auth.uid !== null
+  - isAdmin(): root['users/' + auth.uid + '/role'] === 'admin'
+  - isPublisher(): root['users/' + auth.uid + '/role'] === 'publisher'
+  - isOwner(userId): auth.uid === userId
+
+access:
+  - location: /
+    write: false
+    read: isLoggedIn()
+
+  - location: /groups/
+    write: isAdmin() || isPublisher()
+    read: isLoggedIn()
+
+  - location: /departments/
+    write: false
+    read: isLoggedIn()
+
+  - location: /search/
+    write: isLoggedIn()
+    read: isLoggedIn()
+
+  - location: /users/
+    write: false
+    read: isLoggedIn()
+
+  - location: /users/$userId/
+    write: isOwner($userId) || isAdmin()
+    read: isLoggedIn()
+
+  - location: /articles/
+    write: isAdmin() || isPublisher()
+    read: isLoggedIn()
+
+  - location: /articles/~$articleId/commentsCount/
+    write: isLoggedIn()
+
+  - location: /featured/
+    write: isAdmin() || isPublisher()
+    read: isLoggedIn()
+
+  - location: /optins/
+    write: true
+    read: true
+
+  - location: /jobs/
+    write: isLoggedIn()
+    read: false
+
+  - location: /comments/
+    write: isLoggedIn()
+    read: isLoggedIn()
+
+  - location: /notifications/
+    write: isLoggedIn()
+    read: isLoggedIn()
+
+  - location: /reports/
+    write: isLoggedIn()
+    read: isLoggedIn()
+
+  - location: /locations/
+    write: false
+    read: isLoggedIn()
+
+  - location: /countries/
+    write: false
+    read: isLoggedIn()
+
+  - location: /cities/
+    write: false
+    read: isLoggedIn()
+
+  - location: /queue/
+    write: isAdmin() || isPublisher()
+    read: isAdmin() || isPublisher()

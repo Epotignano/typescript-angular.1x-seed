@@ -2,176 +2,96 @@
  * Created by mmasuyama on 11/10/2015.
  */
 
-/*
- var elementDeletionCtrl = function($scope, $element, $attrs, $modal) {
- var ctrl = this;
- var modalInstance;
- var compareByKey = ctrl.options.compareBy || 'id'; //use id by default
-
- $element.bind('click', function() {
- submitDeletion(ctrl.collection, ctrl.ngModel);
- }
- );
-
-
-
- if(!ctrl.deletionOnSuccess) {
- ctrl.deletionOnSuccess = function(result){
- console.log(result);
- if(ctrl.options.liveUpdate) {
- liveDeletion()
- }
- return result
- }
- }
-
- if(!ctrl.deletionCallback ) {
- ctrl.deletionCallback = function() {
- console.log(result);
- if(ctrl.options.liveUpdate && !result.error) {
- liveDeletion()
- }
-
- return result
- }
- }
-
- if(!ctrl.deletionOnError) {
- ctrl.deletionOnError = function(result){
- console.log(result);
- return result
- }
- }
-
- function liveDeletion () {
- var index = 0;
-
- ctrl.collection.some(function(elem, elemIndex){
- index = elemIndex;
- if(typeof ctrl.ngModel != 'object') {
- return elem[compareByKey] == ctrl.ngModel;
- }
-
- return elem[compareByKey] == ctrl.ngModel[compareByKey];
- });
-
- ctrl.collection.splice(index, 1);
- }
-
- function executeDeletion () {
-
- if (Array.isArray(ctrl.ngModel)) {
-
- var promisesArray = [];
-
- ctrl.ngModel.forEach(function(modelElement){
- var modelElementPromise = $q.defer();
- promisesArray.push(modelElementPromise.promise);
- ctrl.deletionService(modelElement).then(ctrl.deletionOnSuccess, ctrl.deletionOnError)
- });
-
- promisesArray.all(function(results){
- console.log(results)
- })
-
-
- } else {
- if(ctrl.options.usePromise) {
- ctrl.deletionService(ctrl.ngModel)
- .then(ctrl.deletionOnSuccess, ctrl.deletionOnError);
- } else {
- ctrl.deletionService(ctrl.ngModel, ctrl.deletionCallback)
- }
- }
-
- }
-
- function submitDeletion(item) {
- if(ctrl.deletionService) {
-
- if(ctrl.options.askBeforeDelete) {
-
- modalInstance = $modal.open({
- animation: true,
- templateUrl: 'app/components/commons/element_deletor/modal.html',
- controller : function (items, $modalInstance) {
- var ctrl = this;
- ctrl.isArray = Array.isArray(ctrl.items);
- ctrl.items = items;
-
- ctrl.ok = function() {
- $modalInstance.close();
- };
-
- ctrl.cancel = function() {
- $modalInstance.dismiss();
- };
-
- },
- controllerAs : 'ctrl',
- resolve:  {
- items : function() {
- return  ctrl.ngModel;
- }
- }
- });
-
- modalInstance.result.then(function(){
- executeDeletion();
- }, function(){
- //console.log('Dismissed')
- });
-
- } else {
- executeDeletion();
- }
-
- }
- }
-
- angular.extend(ctrl, {
- submitDeletion: submitDeletion
- })
- };
-
- angular.module('ceibo.components.commons.elements', ['ui.bootstrap.modal'])
- .controller('elementDeletionCtrl', elementDeletionCtrl)
- .directive('elementDeletion', function(){
- return {
- require: "ngModel",
- scope: {
- collection: '=',
- ngModel: '=',
- deletionService: '=', //service for delete element if there is an interaction with any api
- options: '=', // liveUpdate : boolean
- modalOptions: '=',
- deletionOnSuccess : '=', //function that we should execute on success
- deletionOnError : '=', //function that we should execute on error
- deletionCallback : '=' //function that we should execute after deletion if the deletionService is not a proimise
- }, //isolate  or not
- restrict : 'AC', //A = attribute, C = class, E = Element
- controller: 'elementDeletionCtrl as ctrl',
- bindToController: true //true or false
- }
- })
- ;*/
-
-
 module app.components.entities {
-
 
   interface IEntityDeletionController {
     executeDeletion()
   }
 
-
   class EntityDeletionController {
+    public collection;
+    public ngModel;
+    public deletionService; //service for delete element if there is an interaction with any api
+    public options; // liveUpdate : boolean
+    public compareBy;
+    public showLabel;
+    public modalOptions;
+    public deletionOnSuccess;  //function that we should execute on success
+    public deletionOnError;  //function that we should execute on error
+    public deletionCallback;
 
 
-    constructor(private $mdDialog) {
+    /* @ngInject */
+    constructor(private $mdDialog, private $element, private $q) {
 
+      this.$element.bind('click', () => {
+        this.submitDeletion(this.collection, this.ngModel)
+      });
+    }
+
+    executeDeletion = () => {
+
+      if (Array.isArray(this.ngModel)) {
+
+        var promisesArray = [];
+
+        this.ngModel.forEach(function (modelElement) {
+          var modelElementPromise = this.$q.defer();
+          promisesArray.push(modelElementPromise.promise);
+          this.deletionService(modelElement).then(this.deletionOnSuccess, this.deletionOnError)
+        });
+
+        /*promisesArray.all(function (results) {
+          console.log(results)
+        })*/
+
+
+      } else {
+        var _model = (this.options.compareBy) ? this.ngModel[this.options.compareBy] : this.ngModel;
+        if (this.options.usePromise) {
+          this.deletionService(_model)
+        } else {
+          this.deletionService(_model, this.deletionCallback)
+        }
+      }
+    };
+
+    submitDeletion(ev, entity) {
+      if (this.deletionService) {
+        if (this.options.askBeforeDelete) {
+          this.$mdDialog.show({
+            controller: DeletorDialogController,
+            controllerAs : 'dialogVm',
+            templateUrl: 'app/components/entities/entities.deletor.dialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: {
+              'entity': entity,
+              'showLabel' : this.showLabel
+            }
+          }).then(() => {
+            this.executeDeletion();
+          })
+        } else {
+          this.executeDeletion();
+        }
+      }
+    }
+
+  }
+
+  class DeletorDialogController {
+    public section;
+    constructor(private $mdDialog, private $translate, public entity, public showLabel) {}
+    add(entity) {
+      this.$mdDialog.hide(entity);
+    }
+    cancel() {
+      this.$mdDialog.cancel();
     }
   }
+
 
   /** @ngInject */
   export function entityDeletor():ng.IDirective {
@@ -180,12 +100,13 @@ module app.components.entities {
       scope: {
         collection: '=',
         ngModel: '=',
+        showLabel: '=',
         deletionService: '=', //service for delete element if there is an interaction with any api
         options: '=', // liveUpdate : boolean
         modalOptions: '=',
-        deletionOnSuccess : '=', //function that we should execute on success
-        deletionOnError : '=', //function that we should execute on error
-        deletionCallback : '=' //function that we should execute after deletion if the deletionService is not a proimise
+        deletionOnSuccess: '=', //function that we should execute on success
+        deletionOnError: '=', //function that we should execute on error
+        deletionCallback: '=' //function that we should execute after deletion if the deletionService is not a proimise
       },
       controller: EntityDeletionController,
       controllerAs: 'vm',
@@ -195,7 +116,8 @@ module app.components.entities {
     return directive;
   }
 
-
+  angular.module('smz.components.entities')
+    .directive('entityDeletor', entityDeletor)
 
 
 }

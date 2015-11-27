@@ -6,6 +6,10 @@
     "NEW": "新規登録",
     "EDIT": "編集",
     "SAVE": "保存する",
+    "CANCEL": "キャンセル",
+    "DELETE": "削除する",
+    "DELETE_NOTIFICATION_REALLY": "本当に",
+    "DELETE_NOTIFICATION_AGREE": "を削除してもよろしいですか？",
     "UPDATE": "更新",
     "INFORMATION": "インフォメーション",
     "PASSWORD": "パスワード",
@@ -14,10 +18,14 @@
     "LAST_NAME": "姓",
     "TEACHERS": "先生",
     "STUDENTS": "生徒",
+    "COURSES": "授業",
     "LIST": "名簿",
+    "ADD": "追加",
     "SEARCH" : "探す",
     "AGE": "年齢",
     "ADDRESS": "住所",
-    "GRADE" : "学年"
+    "GRADE" : "学年",
+    "COURSES_LIST" : "授業名",
+    "AUTOCOMPLETE.NO_MATCHES" : "に一致するは見つかりませんでした"
   }
 }

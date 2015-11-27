@@ -3,32 +3,24 @@ module smileMotivationz {
 
   export class RunBlock {
 
-    static $inject = ['$log', '$rootScope', '$state'];
+    static $inject = ['$log', '$rootScope', 'authTokenService', '$state'];
 
-    constructor($log: ng.ILogService, $rootScope : ng.IRootScopeService,
-                authTokenService : app.services.AuthTokenService,
-                $state: ng.ui.IStateService) {
+    /** @ngInject */ 
+    constructor($log: ng.ILogService, $rootScope : ng.IRootScopeService, authTokenService, $state: ng.ui.IStateService) {
 
-
-      $rootScope.$on('$stateChangeStart', function ()
+      $rootScope.$on('$stateChangeStart', function (event, toState)
       {
+        console.log(authTokenService);
         $rootScope['loadingProgress'] = true;
+        var isAuthorized = authTokenService.isAuthorized();
+         if (!isAuthorized && toState.name !== ApplicationConstants.loginState.name) {
+         event.preventDefault();
+         window.location.hash = ApplicationConstants.loginState.url;
+         }
       });
 
       $rootScope.$on('$stateChangeSuccess', function () {
-
           $rootScope['loadingProgress'] = false;
-
-      });
-
-      $rootScope.$on('$stateChangeStart',	function(event, toState){
-
-        /*var isAuthorized = authTokenService.isAuthorized();
-
-        if(!isAuthorized && toState.name !== 'login'){
-          event.preventDefault();
-          window.location.hash = '/login'
-        }*/
       });
 
       $log.debug('runBlock end');

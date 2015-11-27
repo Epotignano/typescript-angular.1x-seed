@@ -13,7 +13,7 @@ module Auth {
 
     static $inject = ['dbFactory'];
 
-    constructor(private dbFactory : app.services.DBFactory ) {}
+     constructor(private dbFactory : app.services.DBFactory ) {}
 
    sendCredentials(credentials: FirebaseCredentials) {
 

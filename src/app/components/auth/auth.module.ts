@@ -5,8 +5,8 @@
 
 
 module app.components.auth {
-  'use strict'
+  'use strict';
 
   angular.module('smz.components.auth')
-    .directive('smzLogin', smzLogin)
+    .directive('smzLogin', smzLogin);
 }

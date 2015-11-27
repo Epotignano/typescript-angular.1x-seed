@@ -6,7 +6,6 @@
             </div>
 
             <div class="title" translate="LOGIN.TITLE">Log in to your account</div>
-
             <form>
                 <md-input-container flex md-no-float>
                     <input ng-model="vm.email" placeholder="Email" translate
@@ -18,14 +17,8 @@
                            translate-attr-placeholder="COMMONS.PASSWORD">
                 </md-input-container>
 
-                <div class="remember-forgot-password" layout="row" layout-sm="column"
-                     layout-align="space-between center">
-                    <md-checkbox class="remember-me" ng-model="data.cb1" aria-label="Remember Me">
-                        <span translate="LOGIN.REMEMBER_ME">Remember Me</span>
-                    </md-checkbox>
-
-                    <a ui-sref="app.pages_auth_forgot-password" class="forgot-password md-accent-color"
-                       translate="LOGIN.FORGOT_PASSWORD">Forgot Password?</a>
+                <div layout="row" class="md-red-bg">
+                    {{ vm.error }}
                 </div>
 
                 <md-button class="md-raised md-accent" aria-label="LOG IN" translate="LOGIN.LOG_IN"

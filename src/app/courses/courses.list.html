@@ -1,3 +1,5 @@
 <entity-list thread="vm.thread" list="vm.list" entity-conf="vm.coursesConf"
-             options="{editionSref : 'app.courses.edit'}"
+             options="{editionSref : 'app.courses.edit',
+             deletion:{ service: vm.coursesService.removeProxy, showLabel: vm.showCourseLabel } }
+             "
 ></entity-list>

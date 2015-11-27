@@ -1,5 +1,6 @@
 {
   "STUDENTS" : {
-    "SECTION_TITLE" : "生徒"
+    "SECTION_TITLE" : "生徒",
+    "ADD_COURSE" : "授業を追加する"
   }
 }

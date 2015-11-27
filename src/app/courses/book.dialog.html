@@ -1,0 +1,41 @@
+
+<md-dialog style="max-width: 800px;" aria-label="Sunrise" style="max-width:800px">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 translate="COURSES.ADD_BOOK"></h2>
+                <span class="flex"></span>
+                <md-button class="md-icon-button" ng-click="dialogVm.cancel()">
+                    <i class="icon-close s24"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form name="booksForm">
+                <smz-book-cover file="dialogVm.book.cover"></smz-book-cover>
+                <formly-form model="dialogVm.book" fields="dialogVm.booksFormFields">
+                </formly-form>
+                <formly-form model="dialogVm.section" fields="dialogVm.sectionFormFields">
+                    <div layout="row" layout-align="end">
+                        <md-button type="button" ng-click="dialogVm.addSection(dialogVm.section)"
+                                   class="md-raised md-accent"
+                                   aria-label="{{ COURSES.ADD_SECTIONS_OF_BOOK |translate }}">
+                            <span translate="COURSES.ADD_SECTIONS_OF_BOOK"></span>
+                        </md-button>
+                    </div>
+                </formly-form>
+            </form>
+            <md-list>
+                <md-list-item ng-repeat="section in dialogVm.book.sections">
+                    <span>{{ section.name }}</span>
+                </md-list-item>
+            </md-list>
+
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button ng-click="dialogVm.cancel()" class="md-default"><span translate="COMMONS.CANCEL"></span></md-button>
+            <md-button ng-click="dialogVm.add(dialogVm.book)" class="md-accent"><span translate="COMMONS.ADD"></span></md-button>
+        </div>
+    </form>
+</md-dialog>

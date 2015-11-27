@@ -1,0 +1,9 @@
+<md-autocomplete md-selected-item="autocompleteVm.selectedItem" md-search-text="autocompleteVm.searchText"
+                 md-items="item in ctrl.searchService(autocompleteVm.searchText)" md-item-text="item[autocompleteVm.itemKey]">
+    <md-item-template>
+        <span md-highlight-text="autocompleteVm.searchText">{{ item[autocompleteVm.itemKey] }}</span>
+    </md-item-template>
+    <md-not-found>
+        <span translate="AUTOCOMPLETE.NO_MATCHES"></span>
+    </md-not-found>
+</md-autocomplete>

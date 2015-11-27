@@ -5,5 +5,7 @@
         "REMEMBER_ME": "Remember Me",
         "FORGOT_PASSWORD": "Forgot Password?",
         "LOG_IN": "ログイン"
-    }
+    },
+    "INVALID_EMAIL": "メールアドレスが違います",
+    "INVALID_PASSWORD": "パスワードが違います"
 }

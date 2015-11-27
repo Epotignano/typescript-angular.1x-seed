@@ -9,6 +9,30 @@
         <form name="studentsForm" ng-submit="vm.save(vm.student)">
           <formly-form model="vm.student" fields="vm.formFields"
                        >
+
+              <div layout="row">
+                  <md-button type="button" ng-click="vm.showBookDialog($event)"
+                             class="md-raised md-accent"
+                             aria-label="{{ COURSES.ADD_BOOK |translate }}">
+                      <span translate="COURSES.ADD_BOOK"></span>
+                  </md-button>
+              </div>
+
+              <div class='md-padding' layout="row" layout-wrap>
+                  <md-card ng-repeat="course in vm.student.courses" ui-sref=""
+                           entity-async
+                           entity-id="course.id"
+                           entity-key="'courses'"
+                           entity-data="course"
+                  >
+                      <md-card-content>
+                          <h2>{{course.name }}</h2>
+                      </md-card-content>
+                  </md-card>
+              </div>
+
+
+
               <div layout="row" layout-align="end" >
                   <md-button type="submit"
                              class="md-raised md-primary"
@@ -18,6 +42,7 @@
               </div>
           </formly-form>
         </form>
+
     </div>
 </md-content>
 

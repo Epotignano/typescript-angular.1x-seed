@@ -1,0 +1,22 @@
+<ms-card template="'app/core/directives/ms-card/templates/template-3/template-3.html'" ng-model="vm.book"
+         class="ng-pristine ng-untouched ng-valid ms-card ng-isolate-scope" aria-invalid="false">
+    <!-- ngInclude: templatePath -->
+    <div class="ms-card-content-wrapper ng-scope" ng-include="templatePath" onload="cardTemplateLoaded()">
+        <div class="template-3 p-16 teal-bg white-fg md-layout-row layout-align-space-between ng-scope">
+            <div class="md-layout-column layout-align-space-between">
+                <div class="info"><!-- ngIf: card.title -->
+                    <div class="title h1 ng-binding ng-scope" ng-if="card.title">Poison</div>
+                    <!-- end ngIf: card.title --><!-- ngIf: card.subtitle -->
+                    <div class="subtitle h3 secondary-text ng-binding ng-scope" ng-if="card.subtitle">Alice Cooper</div>
+                    <!-- end ngIf: card.subtitle --></div>
+                <div class="cta">
+                    <button class="m-0 md-button md-default-theme" ng-transclude=""><span class="ng-binding ng-scope">LISTEN NOW</span>
+                    </button>
+                </div>
+            </div>
+            <div class="media pl-16"><img class="image" ng-src="assets/images/etc/alice-cooper-poison.jpg"
+                                           ng-show="card.media.image"
+                                          src="" aria-hidden="false"></div>
+        </div>
+    </div>
+</ms-card>

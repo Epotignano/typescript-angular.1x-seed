@@ -16,7 +16,8 @@ gulp.task('partials', function () {
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
-      quotes: true
+      quotes: true,
+      conditionals: true
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
       module: 'smz',

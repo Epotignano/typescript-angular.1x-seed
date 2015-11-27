@@ -12,20 +12,27 @@ module app.components.auth {
 
     email: string;
     password: string;
-    err: any;
+    error: string;
     signIn() : void;
   }
 
   export class LoginController implements ILogin {
-    static $inject = ['authService'];
-    email: string;
-    password: string;
+    public email: string;
+    public error: string;
+    public password: string;
 
-    constructor(private authService: app.services.AuthService, public err: any) {}
+    static $inject = ['authService', '$translate'];
+    /** @ngInject */
+    constructor(private authService: app.services.AuthService, private $translate
+    ) {}
 
     signIn () {
       this.authService.signIn({email: this.email, password: this.password})
-        .then((err) => this.err = err)
+        .then((err) => {
+          if(err.code){
+            this.error = this.$translate.instant(err.code);
+          }
+        });
     }
   }
 }

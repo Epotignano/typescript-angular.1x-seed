@@ -1,8 +1,8 @@
 /**
  * Created by mmasuyama on 10/24/2015.
  */
-module app.modules.courses{
-  'use strict'
+module app.modules.courses {
+  'use strict';
 
   export class CoursesConfig {
     /** @ngInject */
@@ -11,8 +11,8 @@ module app.modules.courses{
         .state('app.courses', {
           abstract: true,
           url: '/courses',
-          "views": {
-            "content": {
+          'views': {
+            'content': {
               templateUrl: 'app/courses/courses.abstract.html'
             }
           }

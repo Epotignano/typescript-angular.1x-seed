@@ -9,6 +9,7 @@ module app.components.entities {
 
   export class EntityEditorController implements IEntityEditorController {
 
+    /** @ngInject */ 
     constructor(){}
 
   }

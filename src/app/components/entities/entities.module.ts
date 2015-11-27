@@ -4,6 +4,6 @@
 
 
 module app.components.entities {
-  angular.module('app.components.entities', ['smart-table'])
-    .directive('entityList', entityList)
+  angular.module('smz.components.entities', ['smart-table'])
+    .directive('entityList', entityList);
 }

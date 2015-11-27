@@ -1,5 +1,12 @@
 {
   "COURSES" : {
-    "SECTION_TITLE" : "Courses"
+    "SECTION_TITLE": "授業",
+    "BOOK_NAME": "教科書名",
+    "BOOK": "教科書",
+    "ADD_BOOK": "授業の教科書を追加する",
+    "DESCRIPTION": "記載",
+    "SECTIONS": "単元",
+    "SECTIONS_OF_BOOK" : "教科書の単元",
+    "ADD_SECTIONS_OF_BOOK" : "教科書の単元を追加する"
   }
 }

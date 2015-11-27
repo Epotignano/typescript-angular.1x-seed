@@ -4,5 +4,5 @@
 
 
 module app.modules.teachers{
-  angular.module('teachers', [])
+  angular.module('teachers', []);
 }

@@ -16,9 +16,8 @@ module app.services {
     public collectionKey: string;
     private userData: app.domain.Course;
     private thread: Rx.Subject<{}>;
-
+    
     /* @ngInject */
-
     constructor(
       private authTokenService : app.services.AuthTokenService,
       private FirebaseCRUDFactory : app.services.FirebaseCRUD,
@@ -27,26 +26,26 @@ module app.services {
 
       this.thread = new Rx.Subject<app.domain.User>();
 
-      this.threadsService.setThread('User', this.thread)
+      this.threadsService.setThread('User', this.thread);
     }
 
     get() {
       if(!this.userData) {
         this.FirebaseCRUDFactory.get(this.authTokenService.getToken(), "x")
           .then((result: any)=> this.thread.onNext({result: result}))
-          .catch((error)=> this.thread.onError({error: error, type:'read'}))
+          .catch((error)=> this.thread.onError({error: error, type:'read'}));
       } else {
-        this.thread.onNext({result: this.userData, type: 'read'})
+        this.thread.onNext({result: this.userData, type: 'read'});
       }
     }
 
     save(teacherObj) {
       this.FirebaseCRUDFactory.create(teacherObj, "a")
         .then((result: any)=> this.thread.onNext({result, type:'write'}))
-        .catch((error)=> this.thread.onError({error, type:'write'}))
+        .catch((error)=> this.thread.onError({error, type:'write'}));
     }
   }
 
   angular.module('smz.services')
-    .service('userService', UserService)
+    .service('userService', UserService);
 }

@@ -15,9 +15,9 @@ module app.threads {
   export class Threads implements IThreads{
 
     private threads = {};
-
+    private generalListeners = [];
     /*@ngInject */
-    constructor(){}
+    constructor() {}
 
     public defaultEvents = {'COLLECTION_LOADED' : 'cloaded',
       'COLLECTION_OBJECT_REMOVED': 'coremoved',
@@ -27,10 +27,21 @@ module app.threads {
 
     setThread (threadKey: string, thread: any) {
       this.threads[threadKey] = thread;
+      this.generalListeners.forEach(function(listener) {
+      listener.onNext(thread);
+      });
+    }
+
+    setGeneralListener(thread: any) {
+      this.generalListeners.push(thread);
+    }
+
+    getGeneralListener () {
+
     }
 
     getThread (threadKey: string) {
-      return this.threads[threadKey]
+      return this.threads[threadKey];
     }
 
     getThreads() {
@@ -40,5 +51,5 @@ module app.threads {
 
 
   angular.module('smz.threads', [])
-    .service('threadsService', Threads)
+    .service('threadsService', Threads);
 }

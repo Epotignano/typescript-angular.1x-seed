@@ -12,12 +12,12 @@ module app.modules.dashboard {
       $stateProvider
         .state('app.dashboard', {
           url: '/dashboard',
-          views :{
+          views : {
             'content': {
               templateUrl: 'app/dashboard/dashboard.html'
             }
           }
-        })
+        });
 
     }
 

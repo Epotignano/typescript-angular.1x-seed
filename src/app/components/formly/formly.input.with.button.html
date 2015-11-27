@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="flex-66">
+      <md-input-container>
+          <label>{{ options.templateOptions.label }}</label> <input ng-model="model[options.key]">
+      </md-input-container>
+    </div>
+    <div class="flex-33">
+      <md-button ng-click="options.templateOptions.button.action(model[options.key])"
+                 class="md-raised {{options.templateOptions.button.class || 'md-primary' }}"
+                 aria-label="{{options.templateOptions.button.text}}">
+        {{ options.templateOptions.button.text }}
+      </md-button>
+    </div>
+</div>

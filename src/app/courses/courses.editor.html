@@ -6,17 +6,34 @@
 <!-- CONTENT -->
 <md-content class="content" ms-scroll>
     <div>
-        <form name="studentsForm" ng-submit="vm.save(vm.student)">
-          <formly-form model="vm.student" fields="vm.formFields"
-                       >
-              <div layout="row" layout-align="end" >
-                  <md-button type="submit"
-                             class="md-raised md-primary"
-                             aria-label="{{ COMMONS.SAVE |translate }}">
-                      <span translate="COMMONS.SAVE"></span>
-                  </md-button>
-              </div>
-          </formly-form>
+        <form name="courseForm" ng-submit="vm.save(vm.course)">
+            <formly-form model="vm.course" fields="vm.formFields">
+                <div layout="row">
+                    <md-button type="button" ng-click="vm.showBookDialog($event)"
+                               class="md-raised md-accent"
+                               aria-label="{{ COURSES.ADD_BOOK |translate }}">
+                        <span translate="COURSES.ADD_BOOK"></span>
+                    </md-button>
+                </div>
+
+                <div class='md-padding' layout="row" layout-wrap>
+                    <md-card ng-repeat="book in vm.course.books">
+                        <img src="assets/images/etc/snow-thumb.jpg" class="md-card-image" alt="image caption">
+                        <md-card-content>
+                            <h2>{{book.title}}</h2>
+                            <p>{{ book.description}} </p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+
+                <div layout="row" layout-align="end">
+                    <md-button type="submit"
+                               class="md-raised md-primary"
+                               aria-label="{{ COMMONS.SAVE |translate }}">
+                        <span translate="COMMONS.SAVE"></span>
+                    </md-button>
+                </div>
+            </formly-form>
         </form>
     </div>
 </md-content>

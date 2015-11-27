@@ -5,6 +5,6 @@
 module app.components.courses {
 
 
-  angular.module('app.components.entities', [])
+  angular.module('app.components.entities', []);
 
 }

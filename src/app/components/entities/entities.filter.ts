@@ -11,6 +11,7 @@ module app.components.entities {
     public list;
     public options;
 
+    /** @ngInject */ 
     constructor() {}
   }
 

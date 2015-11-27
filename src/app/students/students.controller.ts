@@ -2,7 +2,6 @@
  * Created by mmasuyama on 11/5/2015.
  */
 
-
 module app.modules.students {
 
   interface IStudentsList {}
@@ -11,15 +10,22 @@ module app.modules.students {
     public thread;
     public list: app.domain.User[];
     public studentConf;
+    public showStudentLabel;
 
-    constructor( private studentsService : app.services.StudentsService,
-                 private threadsService : app.threads.Threads, private $translate
+    /* @ngInject */
+    constructor(public studentsService: app.services.StudentsService,
+                private threadsService: app.threads.Threads,
+                private $translate
     ) {
 
     this.studentsService.getCollection();
     this.thread = this.threadsService.getThread('Student');
 
-    // List configuration
+    // list configuration
+
+    this.showStudentLabel = function(student) {
+      return student.lastName + " " +  student.firstName;
+    };
 
     this.studentConf = [
       {
@@ -33,7 +39,7 @@ module app.modules.students {
       },
       {
         key: 'grade',
-        label: $translate.instant("COMMONS.GRADE")
+        label: $translate.instant('COMMONS.GRADE')
       }
 
 
@@ -42,7 +48,7 @@ module app.modules.students {
       this.thread.subscribe(
         (data) => this.list = data.data,
         (error) => console.log(error)
-      )
+      );
     }
   }
 
@@ -56,14 +62,18 @@ module app.modules.students {
   private studentThread;
   private id;
   public formFields;
-    private successFn;
-  constructor(public studentsService : app.services.StudentsService,
-              public threadsService : app.threads.Threads,
-              private $translate,
-              $stateParams:ng.ui.IStateParamsService
-  ){
+  private successFn;
 
-    // Data obtaining and save or update logic
+  /* @ngInject */
+  constructor(public studentsService: app.services.StudentsService,
+              public threadsService: app.threads.Threads,
+              private $translate,
+              private $stateParams: ng.ui.IStateParamsService,
+              public coursesList,
+              private $mdDialog
+  ) {
+
+    // data obtaining and save or update logic
 
     this.successFn = (result) => {
       if (result.EVENT == this.threadsService.defaultEvents.OBJECT_LOAD) {
@@ -75,14 +85,17 @@ module app.modules.students {
 
     this.studentThread.subscribe(this.successFn);
 
-    if($stateParams['id']) {
+    if ($stateParams['id']) {
       this.id = $stateParams['id'];
-      this.studentsService.get($stateParams['id'])
+      this.studentsService.get($stateParams['id']);
     } else {
       this.student = {
-        role: 'student'
+        role: 'student',
+        courses: []
       };
     }
+
+
 
    this.formFields = [{
        key: 'lastName',
@@ -114,7 +127,7 @@ module app.modules.students {
        type: 'input',
        templateOptions : {
          type: 'text',
-         label: this.$translate.instant("COMMONS.GRADE")
+         label: this.$translate.instant('COMMONS.GRADE')
        }
      },
 
@@ -126,22 +139,72 @@ module app.modules.students {
          label: this.$translate.instant('COMMONS.AGE')
        }
 
-     }
+     },
+
 
    ];
+  }
 
+    // methods
 
-   }
-
-    // Methods
-
-    save(studentObj){
-      if(this.id) {
-        this.studentsService.update(studentObj, this.id)
+    save(studentObj) {
+      var _studentObj = angular.copy(studentObj);
+      if (this.id) {
+        this.studentsService.update(_studentObj, this.id);
       } else {
-        this.studentsService.create(studentObj);
+        this.studentsService.create(_studentObj);
       }
 
+    }
+
+    showBookDialog(ev) {
+      this.$mdDialog.show({
+        locals: {
+          coursesList: this.coursesList
+        },
+        controller: CoursesDialogController,
+        controllerAs : 'dialogVm',
+        templateUrl: 'app/students/courses.dialog.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true
+      }).then((selectedCourses) => {
+        var _auxCoursesArray = angular.copy(this.student.courses) || [];
+        selectedCourses.forEach((course) => _auxCoursesArray.push({'id': course.$id}));
+        this.student.courses = _auxCoursesArray;
+      });
+    }
+  }
+
+  class CoursesDialogController {
+    public course;
+    public selectedCourses;
+    public courseFormFields;
+    /* @ngInject */
+    constructor(private $mdDialog, private $translate, private coursesList) {
+      this.selectedCourses = [];
+      this.courseFormFields = [{
+        key: 'selectedCourse',
+        type: 'autocomplete',
+        templateOptions : {
+          collection: this['coursesList'],
+          labelKey: 'name',
+          modelKey: '$id'
+        }
+      }
+      ];
+    }
+
+    addCourse(course) {
+      this.selectedCourses.push(angular.copy(course.selectedCourse));
+      this.course = {};
+    }
+
+    add() {
+      this.$mdDialog.hide(this.selectedCourses);
+    }
+    cancel() {
+      this.$mdDialog.cancel();
     }
   }
 

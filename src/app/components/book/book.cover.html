@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="upload-area">
+		<img class="image"  ng-src="{{cover.coverUrl || 'assets/images/backgrounds/header-bg.png'}}">
+			<div class="instructions">
+				<button type="button"
+                ngf-select ng-accept="cover.validate($file)"
+                ng-model="cover.file" ngf-change="cover.fileUpload()"
+                class="md-raised md-accent">Upload image</button>
+			</div>
+			<div ng-show="cover.progress > 0">
+			<progressbar class="progress-striped active" value="cover.progress" type="primary">{{cover.progress}}%</progressbar>
+			</div>
+		</div>
+	</div>
+</div>

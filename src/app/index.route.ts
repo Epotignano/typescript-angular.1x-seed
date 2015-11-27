@@ -6,13 +6,10 @@ module smileMotivationz {
     constructor($stateProvider: ng.ui.IStateProvider,
                 $urlRouterProvider: ng.ui.IUrlRouterProvider,
                 $translatePartialLoaderProvider) {
-      $stateProvider
+    $stateProvider
         .state('app', {
           abstract: true,
           url: '/app',
-          controller: function(toasterService) {
-            console.log(toasterService)
-          },
           views   : {
             'main@'         : {
               templateUrl: 'app/core/layouts/default.html'
@@ -35,7 +32,7 @@ module smileMotivationz {
 
       $urlRouterProvider.otherwise('/app/dashboard');
 
-      //COMMONS TRANSLATIONS
+      // commons translations
       $translatePartialLoaderProvider.addPart('app/commons');
 
     }

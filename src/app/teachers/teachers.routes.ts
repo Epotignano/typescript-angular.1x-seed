@@ -2,7 +2,7 @@
  * Created by mmasuyama on 10/24/2015.
  */
 module app.modules.teachers{
-  'use strict'
+  'use strict';
 
   export class TeachersConfig {
     /** @ngInject */
@@ -11,8 +11,8 @@ module app.modules.teachers{
         .state('app.teachers', {
           abstract: true,
           url: '/teachers',
-          "views": {
-            "content": {
+          'views': {
+            'content': {
               templateUrl: 'app/teachers/teachers.abstract.html'
             }
           }

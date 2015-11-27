@@ -11,34 +11,35 @@ module smileMotivationz {
   'use strict';
 
   angular.module('smz', [
-    // core
-    'app.core',
-
-    // formly
-    'formly',
-    // toaster listener module
-    'toaster',
-    // navigation
-    'app.navigation',
-    // toolbar
-    'app.toolbar',
-    // quick panel
-    'app.quick-panel',
-    // template components
-    'app.components',
-    // commons
-    'app.components.entities',
-    'smz.services',
-    'smz.threads',
-    // Modules
-    'auth',
-    'dashboard',
-    'courses',
-    'teachers',
-    'students'
+      // core
+      'app.core',
+      // formly
+      'formly',
+      'lr.upload',
+      'ngFileUpload',
+      // navigation
+      'app.navigation',
+      // toolbar
+      'app.toolbar',
+      // quick panel
+      'app.quick-panel',
+      // template components
+      'app.components',
+      // commons
+      'smz.components.entities',
+      'smz.components.book',
+      'smz.services',
+      'smz.threads',
+      // modules
+      'settings',
+      'auth',
+      'dashboard',
+      'courses',
+      'teachers',
+      'students'
   ])
-    .config(Config)
-    .config(RouterConfig)
-    .run(RunBlock)
-    .run(FormlyConfiguration)
+      .config(Config)
+      .config(RouterConfig)
+      .run(RunBlock)
+      .run(FormlyConfiguration);
 }
